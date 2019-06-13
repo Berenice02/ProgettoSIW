@@ -1,0 +1,23 @@
+body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.logo {
+  font-size: x-large;
+  color: aqua;
+}
+
+.navbar {
+  background-color: rgb(19, 15, 56);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: aquamarine;
+}
+
+
