@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Matteo Giunta & Elisa Foderaro">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Richiesta Foto</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+  <!-- Bootstrap core CSS -->
+  <link href="Checkout%20example%20%C2%B7%20Bootstrap_files/bootstrap.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="/CSS/richiesta.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container">
+    <div class="py-5 text-center">
+      <!-- Da cambiare il logo -->
+      <img class="d-block mx-auto mb-4" src="Checkout%20example%20%C2%B7%20Bootstrap_files/bootstrap-solid.svg" alt=""
+        width="72" height="72">
+      <h2>Richiesta Foto</h2>
+      <!-- Modificare il nome che non mi piace -->
+      <p class="lead">Completa le informazioni qui sotto per effettuare la richiesta delle foto</p>
+    </div>
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Le tue Foto</span>
+          <!-- qui ci va il numero delle foto selezionate -->
+          <span class="badge badge-secondary badge-pill">3</span>
+        </h4>
+        <!-- questo va cambiato (dinamicamente) -->
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Nome foto</h6>
+              <!-- qui ci potremmo mettere il nome del fotografo -->
+              <small class="text-muted">Nome Fotografo</small>
+            </div>
+            <!-- anteprima foto (!?) -->
+            <span class="text-muted">Anteprima foto</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Nome foto</h6>
+              <!-- qui ci potremmo mettere il nome del fotografo -->
+              <small class="text-muted">Nome Fotografo</small>
+            </div>
+            <!-- anteprima foto -->
+            <span class="text-muted">Anteprima foto</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Nome foto</h6>
+              <!-- qui ci potremmo mettere il nome del fotografo -->
+              <small class="text-muted">Nome Fotografo</small>
+            </div>
+            <!-- anteprima foto -->
+            <span class="text-muted">Anteprima foto</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <!-- da modificare -->
+        <h4 class="mb-3">Informazioni Cliente</h4>
+        <form class="needs-validation" novalidate="">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="nome">Nome <span class="text-muted">(Obbligatorio)</span></label>
+              <input type="text" class="form-control" id="nome" placeholder="Mario" required="">
+              <div class="invalid-feedback">
+                Il nome è obbligatorio
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cognome">Cognome <span class="text-muted">(Obbligatorio)</span></label>
+              <input type="text" class="form-control" id="cognome" placeholder="Rossi" required="">
+              <div class="invalid-feedback">
+                Il cognome è obbligatorio
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="email">Email <span class="text-muted">(Obbligatoria)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" required="">
+              <div class="invalid-feedback">
+                L'email è obbligatoria
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="telefono">Telefono Cellulare <span class="text-muted">(Obbligatorio)</span></label>
+              <input type="text" class="form-control" id="telefono" placeholder="" required="">
+              <div class="invalid-feedback">
+                Il numero di telefono è obbligatorio
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="codiceFiscale">Codice Fiscale <span class="text-muted">(Obbligatorio)</span></label>
+                <input type="text" class="form-control" id="codiceFiscale" placeholder="RSSMRA80A01H501L" required=""
+                  pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" maxlength="16">
+                <div class="invalid-feedback">
+                  Il codice fiscale è obbligatorio
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 mb-3">
+              <label for="indirizzo">Indirizzo <span class="text-muted">(Obbligatorio)</span></label>
+              <input type="text" class="form-control" id="indizizzo" placeholder="Via della Vasca Navale" required="">
+              <div class="invalid-feedback">
+                L'indirizzo è obbligatorio
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="civico">N°</label>
+              <input type="text" class="form-control" id="civico" placeholder="79" required="" maxlength="3">
+              <div class="invalid-feedback">
+                Per favore inserisci il civico
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="paese">Paese</label>
+              <select class="custom-select d-block w-100" id="paese" required="">
+                <option value="" selected="selected">Seleziona...</option>
+                <option>Italia</option>
+              </select>
+              <div class="invalid-feedback">
+                Per favore seleziona un paese
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="regione">Regione</label>
+              <select class="custom-select d-block w-100" id="regione" required="">
+                <option value="" selected="selected">Seleziona...</option>
+                <option>Lazio</option>
+              </select>
+              <div class="invalid-feedback">
+                Per favore seleziona una regione
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cap">CAP</label>
+              <input type="text" class="form-control" id="cap" placeholder="00118" required="" maxlength="5">
+              <div class="invalid-feedback">
+                Per favore inserisci il CAP
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="note">Note <span class="text-muted">(Opzionale)</span></label>
+              <input type="text" class="form-control" id="note" placeholder="" >
+            </div>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Riepilogo</button>
+        </form>
+      </div>
+    </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">© 2018-2019 Silph SPA</p>
+      <ul class="list-inline">
+        <!-- Necessari ? -->
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Termini</a></li>
+        <li class="list-inline-item"><a href="#">Supporto</a></li>
+      </ul>
+    </footer>
+  </div>
+  <script src="Checkout%20example%20%C2%B7%20Bootstrap_files/jquery-3.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="Checkout%20example%20%C2%B7%20Bootstrap_files/bootstrap.js"
+    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+    crossorigin="anonymous"></script>
+  <script src="Checkout%20example%20%C2%B7%20Bootstrap_files/form-validation.js"></script>
+  </body>
+</html>
