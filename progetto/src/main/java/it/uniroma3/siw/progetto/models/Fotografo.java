@@ -12,8 +12,8 @@ public class Fotografo {
 	private Long id;
 	private String nome;
 	private String cognome;
-	private String mail;
-	private String numero;
+	private String email;
+	private String telefono;
 	
 	@OneToMany(mappedBy = "fotografo")
 	private List<Album> album;
@@ -26,8 +26,8 @@ public class Fotografo {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
-		this.mail = mail;
-		this.numero = numero;
+		this.email = mail;
+		this.telefono = numero;
 		this.album = new ArrayList<>();
 	}
 
@@ -51,17 +51,17 @@ public class Fotografo {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getNumero() {
-		return numero;
+	public String getTelefono() {
+		return telefono;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	public List<Album> getAlbum() {
 		return album;
