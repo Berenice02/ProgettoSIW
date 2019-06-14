@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import it.uniroma3.siw.progetto.models.Richiesta;
 
-public interface RichiestaRepository  extends CrudRepository<Long, Richiesta> {
+public interface RichiestaRepository  extends CrudRepository<Richiesta, Long> {
 
 }
