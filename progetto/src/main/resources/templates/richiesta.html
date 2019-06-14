@@ -15,6 +15,7 @@
 	crossorigin="anonymous">
 
 <!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
 <link href="/CSS/toolbar.css" rel="stylesheet">
 <link href="/CSS/richiesta.css" rel="stylesheet">
 </head>
@@ -22,7 +23,7 @@
 <body class="bg-light">
 	<header>
 		<nav
-			class="navbar navbar-expand flex-column flex-md-row bd-navbar">
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
 			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
 			<div class="container">
 				<ul class="navbar-nav flex-row ml-5">
@@ -43,10 +44,7 @@
 	
 	<div class="container">
 		<div class="py-5 text-center">
-			<!-- Da cambiare il logo -->
-			<img class="d-block mx-auto mb-4"
-				src="Checkout%20example%20%C2%B7%20Bootstrap_files/bootstrap-solid.svg"
-				alt="" width="72" height="72">
+			
 			<h2>Richiesta Foto</h2>
 			<!-- Modificare il nome che non mi piace -->
 			<p class="lead">Completa le informazioni qui sotto per effettuare la richiesta delle foto</p>
@@ -94,16 +92,16 @@
 			<div class="col-md-8 order-md-1">
 				<!-- da modificare -->
 				<h4 class="mb-3">Informazioni Cliente</h4>
-				<form class="needs-validation" novalidate="" th:object="${richiesta}">
+				<form class="needs-validation" novalidate="">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 						
 						<!-- HO MODIFICATO QUESTA PER PROVARE A TOGLIERE GLI SCRIPT -->
 							<label for="nome">Nome <span class="text-muted">(Obbligatorio)</span></label>
-							<input type="text" class="form-control" id="nome" th:field="*{nome}"
+							<input type="text" class="form-control" id="nome"
 								placeholder="Mario" required="">
-							<span th:if ="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-							<!-- <div class="invalid-feedback">Il nome è obbligatorio</div>  -->
+							<!-- <span th:if ="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span> -->
+							<div class="invalid-feedback">Il nome è obbligatorio</div>
 						</div>
 						
 						
@@ -189,7 +187,7 @@
 						</div>
 					</div>
 					<hr class="mb-4">
-					<button class="btn btn-primary btn-lg btn-block" type="submit">Riepilogo</button>
+					<button class="btn btn-lg btn-block" type="submit">Riepilogo</button>
 				</form>
 			</div>
 		</div>
