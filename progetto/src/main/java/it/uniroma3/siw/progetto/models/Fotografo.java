@@ -1,11 +1,9 @@
 package it.uniroma3.siw.progetto.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Fotografo {
@@ -17,9 +15,24 @@ public class Fotografo {
 	private String mail;
 	private String numero;
 	
+	@OneToMany(mappedBy = "fotografo")
 	private List<Album> album;
 	
+	public Fotografo() {
+		//no op
+	}
 	
+	public Fotografo(String nome, String cognome, String mail, String numero) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.mail = mail;
+		this.numero = numero;
+		this.album = new ArrayList<>();
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}

@@ -1,11 +1,15 @@
 package it.uniroma3.siw.progetto.models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Album {
@@ -15,7 +19,23 @@ public class Album {
 	private String nome;
 	private LocalDateTime data;
 	
+	@OneToMany(mappedBy = "album")
+	private List<Foto> foto;
+	@ManyToOne
 	private Fotografo fotografo;
+	
+	public Album() {
+		//no op
+	}
+
+	public Album(String nome, LocalDateTime data, Fotografo fotografo) {
+		super();
+		this.nome = nome;
+		this.data = data;
+		this.fotografo = fotografo;
+		this.foto = new ArrayList<Foto>();
+	}
+
 
 	public Long getId() {
 		return id;
@@ -47,6 +67,14 @@ public class Album {
 
 	public void setFotografo(Fotografo fotografo) {
 		this.fotografo = fotografo;
+	}
+
+	public List<Foto> getFoto() {
+		return foto;
+	}
+
+	public void setFoto(List<Foto> foto) {
+		this.foto = foto;
 	}
 	
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Foto {
@@ -15,10 +16,23 @@ public class Foto {
 	private String nome;
 	private LocalDateTime data;
 	
+	@ManyToOne
 	private Fotografo fotografo;
+	@ManyToOne
 	private Album album;
 	
+	public Foto() {
+		//no op
+	}
 	
+	public Foto(String nome, LocalDateTime data, Fotografo fotografo, Album album) {
+		super();
+		this.nome = nome;
+		this.data = data;
+		this.fotografo = fotografo;
+		this.album = album;
+	}
+
 	public Long getId() {
 		return id;
 	}
