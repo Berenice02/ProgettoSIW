@@ -8,7 +8,7 @@ public class SystemController {
 	
 	@RequestMapping(value = "/")
 	public String root() {
-		return "richiesta";
+		return "fotografo";
 	}
 	
 
