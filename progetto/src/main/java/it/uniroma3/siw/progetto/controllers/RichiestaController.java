@@ -39,7 +39,7 @@ public class RichiestaController {
 		this.validator.validate(richiesta, br);
 		if(!br.hasErrors()) {
 			services.salvaRichiesta(richiesta);
-			return "toolbar";
+			return "home";
 		}
 		else
 			return "richiestaForm";
