@@ -30,7 +30,7 @@
 					<li><a class="nav-link p-2"  th:href="@{/fotografi}"> Fotografi </a></li>
 					<li>
 						<!-- Da inserire un comando di thymeleaf in modo che lo veda solo l'admin -->
-						<a class="nav-link p-2" href="#"> Richieste </a>
+						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
 					</li>
 				</ul>
 			</div>
@@ -44,8 +44,8 @@
 	<main role="main">
 	<section class="jumbotron text-center">
 		<div class="container">
-			<h1 class="jumbotron-heading">Qui ci va Nome e Cognome del Fotografo</h1>
-			<p class="lead text-muted">Qui ci vanno le informazioni del Fotografo</p>
+			<h1 class="jumbotron-heading" th:text="${fotografo.nome} + ${fotografo.cognome}">Nome e Cognome del Fotografo</h1>
+			<p class="lead text-muted" th:text="${fotografo.email} + ${fotografo.telefono}">Informazioni del Fotografo</p>
 			<p>
 				<!-- Questo bottone lo può vedere solo l'admin -->
 				<a href="#" class="btn btn-primary my-2">Modifica</a>
