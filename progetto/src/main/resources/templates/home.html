@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Home</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+	<header>
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" href="#"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/nuovaRichiesta}">
+							Fotografi </a></li>
+					<li>
+						<!-- Da inserire un comando di thymeleaf in modo che lo veda solo l'admin -->
+						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
+					</li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item"><a class="nav-link p-2" href="#">
+						Autenticati </a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+	<!-- QUI VA AGGIUNTO THYMELEAF PER PRENDERE I DATI DAL DB -->
+		<div class="row">
+			<div class="col-lg-4">
+				<svg class="bd-placeholder-img rounded-circle" width="140"
+					height="140" xmlns="http://www.w3.org/2000/svg"
+					preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+					aria-label="Placeholder: 140x140">
+					<title>Placeholder</title>
+					<rect width="100%" height="100%" fill="#777"></rect>
+					<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+				</svg>
+				<h2>Nome Fotografo</h2>
+				<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+				<p><a class="btn btn-secondary" th:href="@{/fotografo}" role="button">View details »</a></p>
+			</div>
+		</div>
+		<footer class="text-muted">
+			<div class="container">
+				<p class="float-right">
+					<a href="#">Torna all'inizio</a>
+				</p>
+				<!-- qui ci va il *coso* di silph spa -->
+				<p>Silph SPA ©</p>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>
