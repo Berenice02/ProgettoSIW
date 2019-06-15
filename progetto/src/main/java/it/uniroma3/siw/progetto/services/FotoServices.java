@@ -3,11 +3,13 @@ package it.uniroma3.siw.progetto.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.progetto.models.*;
 import it.uniroma3.siw.progetto.repositories.FotoRepository;
 
+@Service
 public class FotoServices {
 	@Autowired
 	private FotoRepository repo;
