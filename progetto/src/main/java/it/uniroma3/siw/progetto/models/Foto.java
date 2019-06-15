@@ -25,10 +25,10 @@ public class Foto {
 		//no op
 	}
 	
-	public Foto(String nome, LocalDateTime data, Fotografo fotografo, Album album) {
+	public Foto(String nome, Fotografo fotografo, Album album) {
 		super();
 		this.nome = nome;
-		this.data = data;
+		this.data = LocalDateTime.now();
 		this.fotografo = fotografo;
 		this.album = album;
 	}

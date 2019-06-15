@@ -28,10 +28,10 @@ public class Album {
 		//no op
 	}
 
-	public Album(String nome, LocalDateTime data, Fotografo fotografo) {
+	public Album(String nome, Fotografo fotografo) {
 		super();
 		this.nome = nome;
-		this.data = data;
+		this.data = LocalDateTime.now();
 		this.fotografo = fotografo;
 		this.foto = new ArrayList<Foto>();
 	}
