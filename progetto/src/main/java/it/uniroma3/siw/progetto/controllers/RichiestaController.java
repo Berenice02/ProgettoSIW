@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.uniroma3.siw.progetto.models.Paesi;
+import it.uniroma3.siw.progetto.models.Regioni;
 import it.uniroma3.siw.progetto.models.Richiesta;
 import it.uniroma3.siw.progetto.services.RichiestaServices;
 import it.uniroma3.siw.progetto.services.RichiestaValidator;
@@ -27,6 +28,7 @@ public class RichiestaController {
 	public String nuovaRichiesta(Model model) {
 		model.addAttribute("richiesta", new Richiesta());
 		model.addAttribute("paesi", (new Paesi()).getPaesi());
+		model.addAttribute("regioni", (new Regioni()).getRegioni());
 		return "richiesta";
 	}
 	

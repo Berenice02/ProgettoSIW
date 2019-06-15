@@ -163,8 +163,8 @@
 							<label for="regione">Regione</label>
 							<select th:field="*{regione}"
 								class="custom-select d-block w-100" required="">
-								<option th:value="seleziona" th:text="Seleziona..."  selected></option>
-								<option th:value="LZ" th:text="Lazio"></option>
+								<option th:value="seleziona" th:text="Seleziona..." selected></option>
+								<option th:each="r : ${regioni}" th:value="${r}" th:text="${r}"></option>
 							</select>
 						</div>
 						
