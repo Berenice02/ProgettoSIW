@@ -155,7 +155,7 @@
 							<select th:field="*{paese}"
 								class="custom-select d-block w-100" required="">
 								<option th:value="seleziona" th:text="Seleziona..." selected></option>
-								<option th:value="IT" th:text="Italia"></option>
+								<option th:each="p : ${paesi}" th:value="${p}" th:text="${p}"></option>
 							</select>
 						</div>
 						
