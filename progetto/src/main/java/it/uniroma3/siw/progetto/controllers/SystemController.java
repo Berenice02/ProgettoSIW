@@ -10,6 +10,5 @@ public class SystemController {
 	public String root() {
 		return "home";
 	}
-	
 
 }
