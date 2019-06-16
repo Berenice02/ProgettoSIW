@@ -25,16 +25,14 @@
 			<div class="container">
 				<ul class="navbar-nav flex-row ml-5">
 					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
-					<li><a class="nav-link p-2" th:href="@{/fotografi}">
-							Fotografi </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi </a></li>
 					<li>
 						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
 					</li>
 				</ul>
 			</div>
 			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-				<li class="nav-item"><a class="nav-link p-2" href="#">
-						Autenticati </a></li>
+				<li class="nav-item"><a class="nav-link p-2" href="#">Autenticati </a></li>
 			</ul>
 		</nav>
 	</header>
@@ -46,13 +44,11 @@
 			<div class="container">
 				<ul class="navbar-nav flex-row ml-5">
 					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
-					<li><a class="nav-link p-2" th:href="@{/fotografi}">
-							Fotografi </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi </a></li>
 				</ul>
 			</div>
 			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-				<li class="nav-item"><a class="nav-link p-2" href="#">
-						Autenticati </a></li>
+				<li class="nav-item"><a class="nav-link p-2" href="#"> Autenticati </a></li>
 			</ul>
 		</nav>
 	</header>
@@ -63,13 +59,17 @@
 			<div class="container">
 				<ul class="navbar-nav flex-row ml-5">
 					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
-					<li><a class="nav-link p-2" th:href="@{/fotografi}">
-							Fotografi </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi </a></li>
 					<li>
 						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
 					</li>
 				</ul>
 			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item">
+					<p>Hello, <span th:text="${session.user.name}">Sebastian</span>!</p>
+				</li>
+			</ul>
 		</nav>
 	</header>
 	<div class="container">
