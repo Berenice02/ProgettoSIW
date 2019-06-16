@@ -42,7 +42,7 @@ public class FotografoController {
 	}
 	
 	@GetMapping(value = "/fotografi")
-	public String getRichieste(Model model) {
+	public String getFotografi(Model model) {
 		model.addAttribute("fotografi", this.services.primi10Fotografi());
 		return "fotografi";
 	}
