@@ -28,7 +28,6 @@
 					<li><a class="nav-link p-2" th:href="@{/fotografi}">
 							Fotografi </a></li>
 					<li>
-						<!-- Da inserire un comando di thymeleaf in modo che lo veda solo l'admin -->
 						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
 					</li>
 				</ul>
@@ -39,20 +38,43 @@
 			</ul>
 		</nav>
 	</header>
+	
+	<header th:fragment="normal">
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">
+							Fotografi </a></li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item"><a class="nav-link p-2" href="#">
+						Autenticati </a></li>
+			</ul>
+		</nav>
+	</header>
+	<header th:fragment="admin">
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">
+							Fotografi </a></li>
+					<li>
+						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 	<div class="container">
 		<!-- QUI CI VANNO LE VARIE VISTE -->
-		<footer class="text-muted">
-			<div class="container">
-				<p class="float-right">
-					<a href="#">Torna all'inizio</a>
-				</p>
-				<!-- qui ci va il *coso* di silph spa -->
-				<p>Silph SPA ©</p>
-			</div>
-		</footer>
 	</div>
-	<!-- /.container -->
-
 </body>
 
 </html>

@@ -21,7 +21,9 @@
 
 <body class="bg-light">
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
-	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE 
+	VERRA' MODIFICATO COSI' UNA VOLTA INSERITO GLI UTENTI
+	<header th:insert = "~{toolbar :: (${user.isAdmin}? #{admin} : #{normal})}"></header> -->
 	<header th:insert = "~{toolbar :: toolbar}"></header>
 	
 	<div class="container">
