@@ -17,6 +17,7 @@
 <!-- Custom styles for this template -->
 <link href="/CSS/main.css" rel="stylesheet">
 <link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/richieste.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -29,7 +30,7 @@
 	<h4>Richieste</h4>
 	<ul>
 		<li th:each="richiesta : ${richieste}">
-			<a class="text-capitalize" th:href="@{'/richiesta' + '/' + ${richiesta.id}}"
+			<a class="richiesta text-capitalize" th:href="@{'/richiesta' + '/' + ${richiesta.id}}"
 			th:text="${richiesta.nome} +' '+ ${richiesta.cognome}">placeholder</a>
 		</li>
 	</ul>	
