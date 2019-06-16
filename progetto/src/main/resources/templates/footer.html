@@ -6,7 +6,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Lista richieste</title>
+<title>Footer</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -20,21 +20,16 @@
 </head>
 
 <body class="bg-light">
-
-	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
-	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
-	<header th:insert = "~{toolbar :: toolbar}"></header>
-	
 	<div class="container">
-	<h4>Richieste</h4>
-	<ul>
-		<li th:each="richiesta : ${richieste}">
-			<a th:href="@{'/richiesta' + '/' + ${richiesta.id}}"
-			th:text="${richiesta.nome} +' '+ ${richiesta.cognome}">placeholder</a>
-		</li>
-	</ul>	
+		<footer class="text-muted" th:fragment="footer">
+			<div class="container">
+				<p class="float-right">
+					<a href="#">Torna all'inizio</a>
+				</p>
+				<!-- qui ci va il *coso* di silph spa -->
+				<p>Silph SPA ©</p>
+			</div>
+		</footer>
 	</div>
-	
-	<footer th:insert = "~{footer :: footer}"></footer>	
 </body>
 </html>
