@@ -29,7 +29,7 @@
 	<h4>Richieste</h4>
 	<ul>
 		<li th:each="richiesta : ${richieste}">
-			<a th:href="@{'/richiesta' + '/' + ${richiesta.id}}"
+			<a class="text-capitalize" th:href="@{'/richiesta' + '/' + ${richiesta.id}}"
 			th:text="${richiesta.nome} +' '+ ${richiesta.cognome}">placeholder</a>
 		</li>
 	</ul>	
