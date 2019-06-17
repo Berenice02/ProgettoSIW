@@ -26,10 +26,14 @@ public class SystemController {
 	}
 	
 	@GetMapping(value = "/cerca")
-	// "String ... param" è per indicare che potrebbe essere uno o più param
-	public String cerca(Model model, @RequestParam("param") String ... param) {
+	public String cerca(Model model, @RequestParam("param") String param) {
+		String[] input = {param};
+		//se contiene più di una parola, ricerca ogni singola parola
+		if(param.contains(" ")) {
+			input = param.split(" ");
+		}
 		List<Fotografo> risultato = new ArrayList<>();
-		for(String p : param) {
+		for(String p : input) {
 			risultato.addAll(fotografo.fotografoPerNome(p));
 			risultato.addAll(fotografo.fotografoPerCognome(p));
 		}
