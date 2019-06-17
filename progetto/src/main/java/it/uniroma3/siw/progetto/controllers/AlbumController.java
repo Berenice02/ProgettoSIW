@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.uniroma3.siw.progetto.models.Album;
-import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.AlbumValidator;
 
@@ -48,11 +47,7 @@ public class AlbumController {
 			model.addAttribute("album", this.services.albumPerId(id));
 			return "album";
 		}
-		else {
-			Fotografo f = (Fotografo) model.asMap().get("fotografo");
-			model.addAttribute("albums", this.services.albumPerFotografo(f));
-			return "fotografo";
-		}
+		return "home";
 	}
 
 }

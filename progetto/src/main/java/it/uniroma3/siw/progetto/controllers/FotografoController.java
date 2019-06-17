@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.uniroma3.siw.progetto.models.Fotografo;
+import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.FotografoServices;
 import it.uniroma3.siw.progetto.services.FotografoValidator;
 
@@ -23,6 +24,9 @@ public class FotografoController {
 	
 	@Autowired
 	FotografoValidator validator;
+	
+	@Autowired
+	AlbumServices album;
 	
 	@RequestMapping(value = "/nuovoFotografo")
 	public String nuovoFotografo(Model model) {
@@ -50,7 +54,9 @@ public class FotografoController {
 	@RequestMapping(value = "/fotografo/{id}")
 	public String getFotografo(@PathVariable("id") Long id, Model model) {
 		if(id!=null) {
-			model.addAttribute("fotografo", this.services.fotografoPerId(id));
+			Fotografo f = this.services.fotografoPerId(id);
+			model.addAttribute("fotografo", f);
+			model.addAttribute("albums", this.album.albumPerFotografo(f));
 			return "fotografo";
 		}
 		else {
