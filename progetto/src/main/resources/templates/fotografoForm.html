@@ -29,7 +29,7 @@
 		<div class="col-md-8 order-md-1">
 			
 			<h4 class="mb-3">Informazioni Fotografo</h4>
-			<form th:action="@{/salvaFotografo}" method="post" th:object="${fotografo}">
+			<form th:action="@{'/salvaFotografo/' + ${fotografo.id}}" method="post" th:object="${fotografo}">
 				<!-- class="needs-validation" novalidate=""  -->
 				<div class="row">
 					<div class="col-md-6 mb-3">

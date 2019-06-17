@@ -34,7 +34,7 @@
 			<p class="lead text-muted" th:text="${fotografo.telefono}"></p>
 			<p>
 				<!-- Questo bottone lo può vedere solo l'admin -->
-				<a href="#" class="btn btn-primary my-2">Modifica</a>
+				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/modifica'}" class="btn btn-primary my-2">Modifica</a>
 			</p>
 		</div>
 	</section>

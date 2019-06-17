@@ -35,8 +35,8 @@ public class FotografoServices {
 	}
 	
 	@Transactional
-	public List<Fotografo> fotografoPerNomeECognome(String nome, String cognome){
-		return repo.findByNomeAndCognome(nome, cognome);
+	public void rimuoviFotografo(Fotografo f){
+		repo.delete(f);
 	}
 	
 	@Transactional

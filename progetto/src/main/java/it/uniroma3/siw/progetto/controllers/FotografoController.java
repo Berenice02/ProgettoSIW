@@ -34,15 +34,26 @@ public class FotografoController {
 		return "fotografoForm";
 	}
 	
-	@PostMapping(value = "/salvaFotografo")
-	public String salvaFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo, Model model, BindingResult br) {
+	@PostMapping(value = "salvaFotografo/{id}")
+	public String salvaFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo, @PathVariable("id") Long id, Model model, BindingResult br) {
 		this.validator.validate(fotografo, br);
 		if(!br.hasErrors()) {
+			if(id!=null) {
+				Fotografo f = this.services.fotografoPerId(id);
+				this.services.rimuoviFotografo(f);
+			}
 			services.salvaFotografo(fotografo);
+			model.addAttribute("fotografi", services.primi10Fotografi());
 			return "home";
 		}
 		else
 			return "fotografoForm";
+	}
+	
+	@GetMapping(value = "/fotografo/{id}/modifica")
+	public String modificaFotografo(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("fotografo", this.services.fotografoPerId(id));
+		return "fotografoForm";
 	}
 	
 	@GetMapping(value = "/fotografi")
