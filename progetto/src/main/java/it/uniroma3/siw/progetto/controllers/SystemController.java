@@ -1,7 +1,7 @@
 package it.uniroma3.siw.progetto.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,13 +32,15 @@ public class SystemController {
 		if(param.contains(" ")) {
 			input = param.split(" ");
 		}
-		List<Fotografo> risultato = new ArrayList<>();
+		//set per evitare i duplicati
+		Set<Fotografo> risultato = new TreeSet<>();
 		for(String p : input) {
 			risultato.addAll(fotografo.fotografoPerNome(p));
 			risultato.addAll(fotografo.fotografoPerCognome(p));
 		}
+		
 		model.addAttribute("fotografi", risultato);
-		return "fotografi";
+		return "home";
 	}
 
 }
