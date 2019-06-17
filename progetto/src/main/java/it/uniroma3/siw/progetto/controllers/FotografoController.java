@@ -35,11 +35,13 @@ public class FotografoController {
 	}
 	
 	@PostMapping(value = "salvaFotografo/{id}")
-	public String salvaFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo, @PathVariable("id") Long id, Model model, BindingResult br) {
+	public String salvaFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo, @PathVariable("id") String id, Model model, BindingResult br) {
 		this.validator.validate(fotografo, br);
 		if(!br.hasErrors()) {
-			if(id!=null) {
-				Fotografo f = this.services.fotografoPerId(id);
+			if(!id.equals("null")) {
+				/*questa è una schifezza ma non trovo update nella repo*/
+				Fotografo f = this.services.fotografoPerId(Long.decode(id));
+				fotografo.setAlbum(f.getAlbum());
 				this.services.rimuoviFotografo(f);
 			}
 			services.salvaFotografo(fotografo);
@@ -52,7 +54,9 @@ public class FotografoController {
 	
 	@GetMapping(value = "/fotografo/{id}/modifica")
 	public String modificaFotografo(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("fotografo", this.services.fotografoPerId(id));
+		Fotografo f = this.services.fotografoPerId(id);
+		model.addAttribute("fotografo", f);
+		model.addAttribute("albums", album.albumPerFotografo(f));
 		return "fotografoForm";
 	}
 	
