@@ -90,7 +90,7 @@ public class Foto implements Comparable<Foto> {
 
 	@Override
 	public int compareTo(Foto o) {
-		return (int) (o.getId()-this.getId());
+		return this.getNome().compareTo(o.getNome());
 	}
 	
 	

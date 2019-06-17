@@ -97,6 +97,6 @@ public class Fotografo implements Comparable<Fotografo>{
 
 	@Override
 	public int compareTo(Fotografo o) {
-		return (int) (o.getId()-this.getId());
+		return this.getCognome().compareTo(o.getCognome());
 	}
 }
