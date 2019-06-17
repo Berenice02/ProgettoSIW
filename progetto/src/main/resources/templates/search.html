@@ -39,6 +39,7 @@
 		<h2 class="mb-5">Ecco i risultati:</h2>
 		<h4 class="mb-5">Fotografi:</h4>
 		<div class="row">
+			<h6 class="mb-5 ml-4" th:if="${fotografi.isEmpty()}">Nessun fotografo da mostrare</h6>
 			<div class="col-md-4" th:each="fotografo : ${fotografi}">
 				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" focusable="false" role="img">		
