@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.progetto.models.Album;
+import it.uniroma3.siw.progetto.models.Foto;
 import it.uniroma3.siw.progetto.models.Fotografo;
+import it.uniroma3.siw.progetto.services.AlbumServices;
+import it.uniroma3.siw.progetto.services.FotoServices;
 import it.uniroma3.siw.progetto.services.FotografoServices;
 
 @Controller
@@ -18,6 +22,10 @@ public class SystemController {
 	
 	@Autowired
 	FotografoServices fotografo;
+	@Autowired
+	AlbumServices album;
+	@Autowired
+	FotoServices foto;
 	
 	@RequestMapping(value = "/")
 	public String root(Model model) {
@@ -33,14 +41,24 @@ public class SystemController {
 			input = param.split(" ");
 		}
 		//set per evitare i duplicati
-		Set<Fotografo> risultato = new TreeSet<>();
+		Set<Fotografo> fotografi = new TreeSet<>();
 		for(String p : input) {
-			risultato.addAll(fotografo.fotografoPerNome(p));
-			risultato.addAll(fotografo.fotografoPerCognome(p));
+			fotografi.addAll(fotografo.fotografoPerNome(p));
+			fotografi.addAll(fotografo.fotografoPerCognome(p));
+		}
+		Set<Album> albums = new TreeSet<>();
+		for(String p : input) {
+			albums.addAll(album.albumPerNome(p));
+		}
+		Set<Foto> fotografie = new TreeSet<>();
+		for(String p:input) {
+			fotografie.addAll(foto.fotoPerNome(p));
 		}
 		
-		model.addAttribute("fotografi", risultato);
-		return "home";
+		model.addAttribute("fotografi", fotografi);
+		model.addAttribute("albums", albums);
+		model.addAttribute("fotografie", fotografie);
+		return "search";
 	}
 
 }
