@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import it.uniroma3.siw.progetto.models.Album;
 import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.AlbumValidator;
+import it.uniroma3.siw.progetto.services.FotografoServices;
 
 @Controller
 public class AlbumController {
@@ -23,18 +24,23 @@ public class AlbumController {
 	@Autowired
 	AlbumValidator validator;
 	
-	@RequestMapping(value = "/nuovoAlbum")
-	public String nuovoAlbum(Model model) {
+	@Autowired
+	FotografoServices fotografo;
+	
+	@RequestMapping(value = "/fotografo/{id}/nuovoAlbum")
+	public String nuovoAlbum(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("album", new Album());
+		model.addAttribute(fotografo.fotografoPerId(id));
 		return "albumForm";
 	}
 	
-	@PostMapping(value = "/salvaAlbum")
-	//da aggiungere il fotografo
-	public String salvaAlbum(@Valid @ModelAttribute("album") Album album, Model model, BindingResult br) {
+	@PostMapping(value = "/fotografo/{id}/salvaAlbum")
+	public String salvaAlbum(@PathVariable("id") Long id, @Valid @ModelAttribute("album") Album album, Model model, BindingResult br) {
 		this.validator.validate(album, br);
 		if(!br.hasErrors()) {
+			album.setFotografo(fotografo.fotografoPerId(id));
 			services.salvaAlbum(album);
+			model.addAttribute("fotografi", fotografo.primi10Fotografi());
 			return "home";
 		}
 		else

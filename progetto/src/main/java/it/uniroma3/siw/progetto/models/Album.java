@@ -25,15 +25,14 @@ public class Album implements Comparable<Album> {
 	private Fotografo fotografo;
 	
 	public Album() {
-		//no op
+		this.data = LocalDateTime.now();
+		this.foto = new ArrayList<Foto>();
 	}
 
 	public Album(String nome, Fotografo fotografo) {
-		super();
+		this();
 		this.nome = nome;
-		this.data = LocalDateTime.now();
 		this.fotografo = fotografo;
-		this.foto = new ArrayList<Foto>();
 	}
 
 
