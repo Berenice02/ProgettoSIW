@@ -33,4 +33,9 @@ public class AlbumServices {
 	public List<Album> albumPerFotografo(Fotografo fotografo){
 		return repo.findByFotografo(fotografo);
 	}
+	
+	@Transactional
+	public void rimuoviAlbum(Album album) {
+		repo.delete(album);
+	}
 }

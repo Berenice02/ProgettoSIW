@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="col-md-8 order-md-1">
 			
-			<form th:action="@{'/fotografo/' + ${fotografo.id} + '/salvaAlbum'}" method="post" th:object="${album}">
+			<form th:action="@{'/fotografo/' + ${fotografo.id} + '/salvaAlbum/' + ${album.id}}" method="post" th:object="${album}">
 				<!-- class="needs-validation" novalidate=""  -->
 				<div class="row">
 					<div class="col-md-6 mb-3">
