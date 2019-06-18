@@ -13,6 +13,9 @@ import it.uniroma3.siw.progetto.repositories.FotoRepository;
 import it.uniroma3.siw.progetto.repositories.FotografoRepository;
 import it.uniroma3.siw.progetto.repositories.RichiestaRepository;
 
+/*classe per popolare il database con fotografi, album e richieste
+ * mancano le foto e gli admin
+ */
 @Component
 public class DBpopulation implements ApplicationRunner {
 	@Autowired

@@ -27,15 +27,26 @@ public class FotografoController {
 	@Autowired
 	AlbumServices album;
 
+	/*per creare un nuovo fotografo. viene chiamato cliccando "aggiungi un nuovo fotografo" 
+	 * nella pagina dei fotografi (Fotografi)
+	 */
 	@RequestMapping(value = "/nuovoFotografo")
 	public String nuovoFotografo(Model model) {
 		model.addAttribute("fotografo", new Fotografo());
 		return "fotografoForm";
 	}
 
+	/*per salvare un nuovo fotografo o aggiornare i dati di uno già esistente
+	 * viene chiamato cliccando "salva" da FotografoForm
+	 */
 	@PostMapping(value = "/salvaFotografo/{idFotografo}")
 	public String salvaFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo,
 			@PathVariable(value = "idFotografo") String idFotografo, Model model) {
+		/*l'id viene passato come string perché il valore null che assume 
+		 * nella creazione di un nuovo fotografo è una stringa.
+		 * Quando il fotografo esiste (e quindi ha un id) il Long si recupera
+		 * tramite il metodo statico Long.decode(String s)
+		 */
 		if(!idFotografo.equals("null")) {
 			services.aggiornaFotografo(Long.decode(idFotografo), fotografo);
 		}
@@ -45,6 +56,9 @@ public class FotografoController {
 		return "home";
 	}
 
+	/*per modificare i dati del fotografo. viene chiamato cliccando "modifica informazioni"
+	 * nella pagina di visualizzazione del fotografo (Fotografo)
+	 */
 	@GetMapping(value = "/fotografo/{id}/modifica")
 	public String modificaFotografo(@PathVariable("id") Long id, Model model) {
 		Fotografo f = this.services.fotografoPerId(id);
@@ -53,12 +67,20 @@ public class FotografoController {
 		return "fotografoForm";
 	}
 
+	/* per visualizzare i fotografi del database
+	 * viene chiamato cliccando "fotografi" nella toolbar
+	 */
 	@GetMapping(value = "/fotografi")
 	public String getFotografi(Model model) {
-		model.addAttribute("fotografi", this.services.primi10Fotografi());
+		model.addAttribute("fotografi", this.services.tuttiFotografi());
 		return "fotografi";
 	}
 
+	/*per visualizzare un fotografo. viene chiamato cliccando "vedi dettagli"
+	 * nella pagina di inizio (Home), in quella dei fotografi (Fotografi) 
+	 * e nei risultati di una ricerca
+	 * Altrimenti, senza id vengono visualizzati i primi 10 fotografi del database
+	 */
 	@RequestMapping(value = "/fotografo/{id}")
 	public String getFotografo(@PathVariable("id") Long id, Model model) {
 		if(id!=null) {
