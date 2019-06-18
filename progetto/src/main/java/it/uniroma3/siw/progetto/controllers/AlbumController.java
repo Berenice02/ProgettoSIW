@@ -63,12 +63,13 @@ public class AlbumController {
 
 	@RequestMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}")
 	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo) {
+		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		if(idAlbum!=null) {
+			model.addAttribute("fotografo", f);
 			model.addAttribute("album", this.services.albumPerId(idAlbum));
 			return "album";
 		}
 		else {
-			Fotografo f = fotografo.fotografoPerId(idFotografo);
 			model.addAttribute("fotografo", f);
 			model.addAttribute("albums", services.albumPerFotografo(f));
 			return "fotografo";
