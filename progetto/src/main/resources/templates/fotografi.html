@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
+
 <title>Lista fotografi</title>
 
 <!-- Bootstrap core CSS -->
@@ -24,24 +24,32 @@
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE 
 	VERRA' MODIFICATO COSI' UNA VOLTA INSERITO GLI UTENTI
 	<header th:insert = "~{toolbar :: (${user.isAdmin}? #{admin} : #{normal})}"></header> -->
-	<header th:insert = "~{toolbar :: toolbar}"></header>
-	
+	<header th:insert="~{toolbar :: toolbar}"></header>
+
+	<div class="container my-5 mr-auto">
+		<!-- Questo bottone lo può vedere solo l'admin -->
+		<a th:href="@{/nuovoFotografo}" class="btn btn-primary btn-lg">Aggiungi un nuovo fotografo</a>
+	</div>
 	<div class="container">
-	<!-- QUI VA AGGIUNTO THYMELEAF PER PRENDERE I DATI DAL DB -->
 		<div class="row">
 			<div class="col-md-4 mb-5" th:each="fotografo : ${fotografi}">
 				<svg class="bd-placeholder-img rounded-circle" width="140"
 					height="140" focusable="false" role="img">		
 					<rect width="100%" height="100%" fill="#777"></rect>
 				</svg>
-				<h4 class="text-capitalize" th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Nome Fotografo</h4>
-				<p class="lead text-muted" th:text="${fotografo.email}">Informazioni del Fotografo</p>
+				<h4 class="text-capitalize"
+					th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Nome
+					Fotografo</h4>
+				<p class="lead text-muted" th:text="${fotografo.email}">Informazioni
+					del Fotografo</p>
 				<p class="lead text-muted" th:text="${fotografo.telefono}"></p>
-				<p><a class="btn btn-secondary" th:href="@{'/fotografo' + '/' + ${fotografo.id}}"
-				role="button">View details »</a></p>
+				<p>
+					<a class="btn btn-secondary"
+						th:href="@{'/fotografo/' + ${fotografo.id}}" role="button">View details »</a>
+				</p>
 			</div>
 		</div>
-		<footer th:insert = "~{footer :: footer}"></footer>	
+		<footer th:insert="~{footer :: footer}"></footer>
 	</div>
 </body>
 </html>
