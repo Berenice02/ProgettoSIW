@@ -34,7 +34,7 @@
 			<p class="lead text-muted" th:text="${fotografo.telefono}"></p>
 			<p>
 				<!-- Questo bottone lo può vedere solo l'admin -->
-				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/modifica'}" class="btn btn-primary my-2">Modifica</a>
+				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/modifica'}" class="btn btn-primary my-2">Modifica Informazioni</a>
 				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/nuovoAlbum'}" class="btn btn-primary my-2 ml-auto">Nuovo Album</a>
 			</p>
 		</div>
@@ -58,11 +58,6 @@
 								<div class="btn-group">
 									<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id}}"
 										class="btn btn-sm btn-outline-secondary">Visualizza</a>
-									
-									<!-- QUESTO LO DEVE VEDERE SOLO L'ADMIN -->
-									<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}"
-										class="btn btn-sm btn-outline-secondary">Modifica</a>
-								
 								</div>
 								<small class="text-muted" th:text="${album.data}">Orario di inserimento</small>
 							</div>
