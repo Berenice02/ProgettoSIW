@@ -20,6 +20,13 @@ public class AlbumServices {
 	}
 	
 	@Transactional
+	public void aggiornaAlbum(Long id, Album a) {
+		Album album = repo.findById(id).get();
+		album.setNome(a.getNome());
+		album.setFoto(a.getFoto());
+	}
+	
+	@Transactional
 	public Album albumPerId(Long id){
 		return repo.findById(id).get();
 	}

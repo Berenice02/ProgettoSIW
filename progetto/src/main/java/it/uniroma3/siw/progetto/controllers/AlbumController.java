@@ -41,14 +41,12 @@ public class AlbumController {
 			@PathVariable("idAlbum") String idAlbum) {
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		if(!idAlbum.equals("null")) {
-			/*questa è una schifezza ma non so come fare update nella repo*/
-			Album a = this.services.albumPerId(Long.decode(idAlbum));
-			a.setNome(album.getNome());
-			album = a;
-			this.services.rimuoviAlbum(a);
+			this.services.aggiornaAlbum(Long.decode(idAlbum), album);
 		}
-		album.setFotografo(f);
-		services.salvaAlbum(album);
+		else {
+			album.setFotografo(f);
+			services.salvaAlbum(album);
+		}
 		model.addAttribute("fotografo", f);
 		model.addAttribute("albums", services.albumPerFotografo(f));
 		return "fotografo";
