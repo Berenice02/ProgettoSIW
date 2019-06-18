@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,28 +37,23 @@ public class AlbumController {
 
 	@PostMapping(value = "/fotografo/{idFotografo}/salvaAlbum/{idAlbum}")
 	public String salvaAlbum(@PathVariable("idFotografo") Long idFotografo,
-			@Valid @ModelAttribute("album") Album album, Model model, BindingResult br,
+			@Valid @ModelAttribute("album") Album album, Model model,
 			@PathVariable("idAlbum") String idAlbum) {
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
-		this.validator.validate(album, br);
-		if(!br.hasErrors()) {
-			if(!idAlbum.equals("null")) {
-				/*questa è una schifezza ma non so come fare update nella repo*/
-				Album a = this.services.albumPerId(Long.decode(idAlbum));
-				a.setNome(album.getNome());
-				album = a;
-				this.services.rimuoviAlbum(a);
-			}
-			album.setFotografo(f);
-			services.salvaAlbum(album);
-			model.addAttribute("fotografo", f);
-			model.addAttribute("albums", services.albumPerFotografo(f));
-			return "fotografo";
+		if(!idAlbum.equals("null")) {
+			/*questa è una schifezza ma non so come fare update nella repo*/
+			Album a = this.services.albumPerId(Long.decode(idAlbum));
+			a.setNome(album.getNome());
+			album = a;
+			this.services.rimuoviAlbum(a);
 		}
-		else
-			return "albumForm";
+		album.setFotografo(f);
+		services.salvaAlbum(album);
+		model.addAttribute("fotografo", f);
+		model.addAttribute("albums", services.albumPerFotografo(f));
+		return "fotografo";
 	}
-	
+
 	@GetMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/modifica")
 	public String modificaAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo) {
 		Album a = this.services.albumPerId(idAlbum);
