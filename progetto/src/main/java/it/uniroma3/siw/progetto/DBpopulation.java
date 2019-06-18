@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import it.uniroma3.siw.progetto.models.Album;
 import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.models.Richiesta;
 import it.uniroma3.siw.progetto.repositories.AlbumRepository;
@@ -48,6 +49,27 @@ public class DBpopulation implements ApplicationRunner {
 		fotografo.save(f2);
 		fotografo.save(f3);
 		fotografo.save(f4);
+		
+		Album a1 = new Album("albe", f1);
+		Album a2 = new Album("tramonti", f1);
+		Album a3 = new Album("gatti", f2);
+		Album a4 = new Album("cani", f2);
+		Album a5 = new Album("uccelli", f2);
+		Album a6 = new Album("rettili", f2);
+		Album a7 = new Album("strada", f3);
+		Album a8 = new Album("lampioni", f3);
+		Album a9 = new Album("ristoranti", f3);
+		Album a10 = new Album("cibo", f4);
+		album.save(a1);
+		album.save(a2);
+		album.save(a3);
+		album.save(a4);
+		album.save(a5);
+		album.save(a6);
+		album.save(a7);
+		album.save(a8);
+		album.save(a9);
+		album.save(a10);
 		
 		Richiesta r1 = new Richiesta("matteo", "giunta", "m.g@gmail.com", "3401234567",
 				"mttgnt97t12h501s", "via vasca navale", "79", "Italia", "Lazio", "00131");
