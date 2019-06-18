@@ -33,16 +33,14 @@ public class FotografoController {
 		return "fotografoForm";
 	}
 
-	@PostMapping(value = "/salvaFotografo/{id}")
+	@PostMapping(value = "/salvaFotografo/{idFotografo}")
 	public String salvaFotografo(@Valid @ModelAttribute("fotografo") Fotografo fotografo,
-			@PathVariable("id") String id, Model model) {
-		if(!id.equals("null")) {
-			/*questa è una schifezza ma non trovo update nella repo*/
-			Fotografo f = this.services.fotografoPerId(Long.decode(id));
-			fotografo.setAlbum(f.getAlbum());
-			this.services.rimuoviFotografo(f);
+			@PathVariable(value = "idFotografo") String idFotografo, Model model) {
+		if(!idFotografo.equals("null")) {
+			services.aggiornaFotografo(Long.decode(idFotografo), fotografo);
 		}
-		services.salvaFotografo(fotografo);
+		else
+			services.salvaFotografo(fotografo);
 		model.addAttribute("fotografi", services.primi10Fotografi());
 		return "home";
 	}
