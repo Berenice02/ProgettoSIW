@@ -54,4 +54,9 @@ public class FotografoServices {
 		List<Fotografo> fotografi = (List<Fotografo>) repo.findAll();
 		return fotografi.subList(0, Integer.min(10, fotografi.size()));
 	}
+	
+	@Transactional
+	public List<Fotografo> tuttiFotografi(){
+		return (List<Fotografo>) repo.findAll();
+	}
 }
