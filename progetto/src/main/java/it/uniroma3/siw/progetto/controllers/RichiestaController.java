@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import it.uniroma3.siw.progetto.models.Paesi;
 import it.uniroma3.siw.progetto.models.Regioni;
 import it.uniroma3.siw.progetto.models.Richiesta;
+import it.uniroma3.siw.progetto.services.FotografoServices;
 import it.uniroma3.siw.progetto.services.RichiestaServices;
 import it.uniroma3.siw.progetto.services.RichiestaValidator;
 
@@ -24,6 +25,9 @@ public class RichiestaController {
 
 	@Autowired
 	RichiestaValidator validator;
+	
+	@Autowired
+	FotografoServices fotografo;
 
 	@RequestMapping(value = "/nuovaRichiesta")
 	public String nuovaRichiesta(Model model) {
@@ -36,6 +40,7 @@ public class RichiestaController {
 	@PostMapping(value = "/salvaRichiesta")
 	public String salvaRichiesta(@Valid @ModelAttribute("richiesta") Richiesta richiesta, Model model) {
 		services.salvaRichiesta(richiesta);
+		model.addAttribute("fotografi", fotografo.primi10Fotografi());
 		return "home";
 	}
 
