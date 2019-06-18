@@ -51,7 +51,7 @@
 				<!-- SERVE UN INGRANDISCI OPPURE DIRETTAMENTE AGGIUNGI ALLA RICHIESTA? -->
 				<p>
 					<a class="btn btn-secondary" role="button"
-						th:href="@{'/foto' + '/' + ${foto.id}}"> Ingrandisci »</a>
+						th:href="@{'/fotografo/' + ${album.fotografo.id} + '/album' + '/' + ${album.id} + '/foto' + '/' + ${foto.id}}"> Ingrandisci »</a>
 				</p>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 					th:text="${album.nome}">Nome Album</h2>
 				<p>
 					<a class="btn btn-secondary" role="button"
-						th:href="@{'/album' + '/' + ${album.id}}">Vedi Foto »</a>
+						th:href="@{'/fotografo/' + ${album.fotografo.id} + '/album' + '/' + ${album.id}}">Vedi Foto »</a>
 				</p>
 			</div>
 		</div>
