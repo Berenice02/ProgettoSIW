@@ -1,5 +1,8 @@
-.container {
-  max-width: 960px;
+.col {
+	color: navy;
+	font-size: large;	
 }
 
-.lh-condensed { line-height: 1.25; }
+span {
+	color:black;
+}
