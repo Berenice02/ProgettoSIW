@@ -24,6 +24,7 @@ public class AlbumServices {
 		Album album = repo.findById(id).get();
 		album.setNome(a.getNome());
 		album.setFoto(a.getFoto());
+		//solo questi due perché fotografo e data non si possono modificare
 	}
 	
 	@Transactional

@@ -17,6 +17,7 @@ import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.FotoServices;
 import it.uniroma3.siw.progetto.services.FotografoServices;
 
+/*controller che gestisce la homepage*/
 @Controller
 public class SystemController {
 	
@@ -27,16 +28,20 @@ public class SystemController {
 	@Autowired
 	FotoServices foto;
 	
+	/*semplicemente per visualizzare la home con i primi 10 fotografi del database*/
 	@RequestMapping(value = "/")
 	public String root(Model model) {
 		model.addAttribute("fotografi", this.fotografo.primi10Fotografi());
 		return "home";
 	}
 	
+	/*per visualizzare i risultati di una ricerca.
+	 * viene chiamato cliccando "cerca" sulla home
+	 */
 	@GetMapping(value = "/cerca")
 	public String cerca(Model model, @RequestParam("param") String param) {
 		String[] input = {param};
-		//se contiene più di una parola, ricerca ogni singola parola
+		//se il testo della ricerca contiene più di una parola, ricerca ogni singola parola
 		if(param.contains(" ")) {
 			input = param.split(" ");
 		}
@@ -55,6 +60,7 @@ public class SystemController {
 			fotografie.addAll(foto.fotoPerNome(p));
 		}
 		
+		//li aggiungo al modello divisi tra fotografi, album e foto
 		model.addAttribute("fotografi", fotografi);
 		model.addAttribute("albums", albums);
 		model.addAttribute("fotografie", fotografie);
