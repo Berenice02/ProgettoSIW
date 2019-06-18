@@ -20,6 +20,16 @@ public class FotografoServices {
 	}
 	
 	@Transactional
+	public void aggiornaFotografo(Long id, Fotografo f) {
+		Fotografo fotografo = repo.findById(id).get();
+		fotografo.setNome(f.getNome());
+		fotografo.setCognome(f.getCognome());
+		fotografo.setEmail(f.getEmail());
+		fotografo.setTelefono(f.getTelefono());
+		fotografo.setAlbum(f.getAlbum());
+	}
+	
+	@Transactional
 	public Fotografo fotografoPerId(Long id){
 		return repo.findById(id).get();
 	}
