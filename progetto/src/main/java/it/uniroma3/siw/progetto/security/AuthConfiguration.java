@@ -34,9 +34,11 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 				//solo chi è admin può accedere(da modificare)
 				.antMatchers(HttpMethod.GET, "/daModificare").hasAnyAuthority("ADMIN")
 			//definisce come si fa il login (da cambiare con quello creato)
-			.and().formLogin().loginPage("/login").loginProcessingUrl("/login")
+			.and().formLogin().loginPage("/login")
 				//dopo il login avvenuto con successo, va alla pagina di benvenuto(da modificare)
-				.defaultSuccessUrl("/home")
+				.defaultSuccessUrl("/fotografi", true)
+				//se il login non ha avuto successo
+				.failureUrl("/login.html?error=true")
 			//definisco la parte logout
 			.and().logout()
 				//mando una get alla pagina di logout
