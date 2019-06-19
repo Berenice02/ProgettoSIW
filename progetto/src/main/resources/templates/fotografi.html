@@ -24,7 +24,7 @@
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE 
 	VERRA' MODIFICATO COSI' UNA VOLTA INSERITO GLI UTENTI
 	<header th:insert = "~{toolbar :: (${user.isAdmin}? #{admin} : #{normal})}"></header> -->
-	<header th:insert="~{toolbar :: toolbar}"></header>
+	<header th:insert="~{toolbar :: login}"></header>
 
 	<div class="container my-5 mr-auto">
 		<!-- Questo bottone lo può vedere solo l'admin -->
@@ -51,5 +51,16 @@
 		</div>
 		<footer th:insert="~{footer :: footer}"></footer>
 	</div>
+		<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
 </body>
 </html>
