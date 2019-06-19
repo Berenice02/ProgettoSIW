@@ -41,7 +41,6 @@ public class SystemController {
 	@RequestMapping(value = "/")
 	public String root(Model model) {
 		model.addAttribute("fotografi", this.fotografo.primi10Fotografi());
-		SystemController.getUtenteAndRole(model);
 		return "home";
 	}
 	
