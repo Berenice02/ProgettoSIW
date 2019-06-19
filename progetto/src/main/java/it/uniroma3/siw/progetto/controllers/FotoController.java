@@ -37,7 +37,7 @@ public class FotoController {
 	public String nuovoAlbum(@PathVariable("idFotografo") Long idFotografo,
 			@PathVariable("idAlbum") Long idAlbum, Model model,
 			@RequestParam(value = "files") MultipartFile[] files) {
-		//prendi i riferimenti ad album e foto
+		//prendi i riferimenti ad album e fotografo
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		Album a = album.albumPerId(idAlbum);
 		//salva ogni foto
@@ -47,11 +47,37 @@ public class FotoController {
 			fotografie.add(foto);
 		}
 		//aggiungi tutto al model
-		model.addAttribute("fotografie", fotografie);
 		model.addAttribute("fotografo", f);
 		model.addAttribute("album", a);
+		model.addAttribute("path", f.getId().toString() +"/" + a.getId().toString());
+		model.addAttribute("fotografie", fotografie);
 		//SystemController.getUtenteAndRole(model);
 		return "album";
+	}
+	
+	/*per visualizzare una foto dell'album. viene chiamato cliccando "visualizza"
+	 * nell'album o "vedi" nei risultati di una ricerca
+	 * Altrimenti, senza id vengono visualizzate tutte le foto di quell'album
+	 */
+	@PostMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/foto/{idFoto}")
+	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model,
+			@PathVariable("idFotografo") Long idFotografo, @PathVariable("idFoto") Long idFoto) {
+		//prendi i riferimenti ad album e fotografo
+		Fotografo f = fotografo.fotografoPerId(idFotografo);
+		Album a = album.albumPerId(idAlbum);
+		SystemController.getUtenteAndRole(model);
+		if(idFoto!=null) {
+			Foto foto = this.services.fotoPerId(idFoto);
+			model.addAttribute("fotografo", f);
+			model.addAttribute("album", a);
+			model.addAttribute("foto", foto);
+			return "album";
+		}
+		else {
+			model.addAttribute("fotografo", f);
+			model.addAttribute("albums", album.albumPerFotografo(f));
+			return "fotografo";
+		}
 	}
 
 }
