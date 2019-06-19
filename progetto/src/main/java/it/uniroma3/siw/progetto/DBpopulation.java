@@ -3,14 +3,17 @@ package it.uniroma3.siw.progetto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import it.uniroma3.siw.progetto.models.Album;
 import it.uniroma3.siw.progetto.models.Fotografo;
+import it.uniroma3.siw.progetto.models.Funzionario;
 import it.uniroma3.siw.progetto.models.Richiesta;
 import it.uniroma3.siw.progetto.repositories.AlbumRepository;
 import it.uniroma3.siw.progetto.repositories.FotoRepository;
 import it.uniroma3.siw.progetto.repositories.FotografoRepository;
+import it.uniroma3.siw.progetto.repositories.FunzionarioRepository;
 import it.uniroma3.siw.progetto.repositories.RichiestaRepository;
 
 /*classe per popolare il database con fotografi, album e richieste
@@ -29,6 +32,9 @@ public class DBpopulation implements ApplicationRunner {
 	
 	@Autowired
 	private FotoRepository foto;
+	
+	@Autowired
+	private FunzionarioRepository funzionario;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -41,6 +47,7 @@ public class DBpopulation implements ApplicationRunner {
 		fotografo.deleteAll();
 		album.deleteAll();
 		foto.deleteAll();
+		funzionario.deleteAll();
 	}
 	
 	private void addAll() {
@@ -83,6 +90,15 @@ public class DBpopulation implements ApplicationRunner {
 		richiesta.save(r1);
 		richiesta.save(r2);
 		richiesta.save(r3);
+		
+		Funzionario fu1 = new Funzionario("Matteo", "Giunta", "MTGN97", null);
+		String fu1pass = new BCryptPasswordEncoder().encode("mgpass");
+		fu1.setPassword(fu1pass);
+		funzionario.save(fu1);
+		
+		Funzionario fu2 = new Funzionario("Elisa", "Foderaro", "ELFD98", null);
+		String fu2pass = new BCryptPasswordEncoder().encode("efpass");
+		fu2.setPassword(fu2pass);
+		funzionario.save(fu2);
 	}
-
 }
