@@ -33,28 +33,33 @@
 			<p>
 				<!-- Questo bottone lo può vedere solo l'admin -->
 				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}" class="btn btn-primary my-2">Modifica Informazioni</a>
-				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/nuovaFoto'}" class="btn btn-primary my-2 ml-auto">Nuova Foto</a>
 			</p>
+			<div class="form inline">
+				<form th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/salvaFoto'}" method="post" enctype="multipart/form-data">
+					<input class="btn btn-primary my-2 ml-auto" type="file" name="files" multiple>
+					<button class="btn btn-primary my-2 ml-auto" type="submit">Carica</button>
+				</form>
+			</div>
 		</div>
 	</section>
 	<!-- da modificare l'icona -->
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4" th:each="album : ${albums}">
+				<div class="col-md-4" th:each="foto : ${fotografie}">
 					<div class="card mb-4 shadow-sm">
-						<svg class="bd-placeholder-img card-img-top" width="100%"
-							height="225" xmlns="http://www.w3.org/2000/svg"
+						<img th:src="'/images/'+ ${fotografo.id} + ${album.id} + ${foto.nome}">
+						<!--<svg class="card-img-top" width="100%" height="225"
 							preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
 							aria-label="Placeholder: Thumbnail">
-							<rect width="100%" height="100%" fill="#55595c"></rect>
+							<rect width="100%" height="100%" th:fill="#55595c"></rect>
                 		</svg>
 						<div class="card-body">
-							<p class="card-text" th:text="${album.nome}">Nome della foto</p>
+							<p class="card-text" th:text="${foto.nome}">Nome della foto</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-									<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id}}"
-										class="btn btn-sm btn-outline-secondary">Visualizza</a>
+									 <a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id}}"
+										class="btn btn-sm btn-outline-secondary">Visualizza</a>  -->
 								</div>
 							</div>
 						</div>

@@ -22,13 +22,12 @@ public class Foto implements Comparable<Foto> {
 	private Album album;
 	
 	public Foto() {
-		//no op
+		this.data = LocalDateTime.now();
 	}
 	
-	public Foto(String nome, Fotografo fotografo, Album album) {
-		super();
+	public Foto(String nome, Album album, Fotografo fotografo) {
+		this();
 		this.nome = nome;
-		this.data = LocalDateTime.now();
 		this.fotografo = fotografo;
 		this.album = album;
 	}
