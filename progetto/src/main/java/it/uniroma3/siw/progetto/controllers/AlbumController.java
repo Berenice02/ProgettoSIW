@@ -36,6 +36,7 @@ public class AlbumController {
 	public String nuovoAlbum(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("album", new Album());
 		model.addAttribute("fotografo", fotografo.fotografoPerId(id));
+		SystemController.getUtenteAndRole(model);
 		return "albumForm";
 	}
 
@@ -62,6 +63,7 @@ public class AlbumController {
 		}
 		model.addAttribute("fotografo", f);
 		model.addAttribute("albums", services.albumPerFotografo(f));
+		SystemController.getUtenteAndRole(model);
 		return "fotografo";
 	}
 
@@ -75,6 +77,7 @@ public class AlbumController {
 		model.addAttribute("album", a);
 		//da aggiungere al model le foto dell'album
 		model.addAttribute("fotografo", fotografo.fotografoPerId(idFotografo));
+		SystemController.getUtenteAndRole(model);
 		return "albumForm";
 	}
 
@@ -85,6 +88,7 @@ public class AlbumController {
 	@RequestMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}")
 	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo) {
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
+		SystemController.getUtenteAndRole(model);
 		if(idAlbum!=null) {
 			model.addAttribute("fotografo", f);
 			model.addAttribute("album", this.services.albumPerId(idAlbum));
@@ -96,5 +100,4 @@ public class AlbumController {
 			return "fotografo";
 		}
 	}
-
 }

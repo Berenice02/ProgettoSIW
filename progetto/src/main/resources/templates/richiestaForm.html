@@ -24,7 +24,7 @@
 
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
-	<header th:insert = "~{toolbar :: toolbar}"></header>
+	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
 	
 	<div class="container">
 		<div class="py-5 text-center">
@@ -186,5 +186,16 @@
 		</div>
 		<footer th:insert = "~{footer :: footer}"></footer>	
 	</div>
+		<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
 </body>
 </html>

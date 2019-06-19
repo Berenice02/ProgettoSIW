@@ -37,6 +37,7 @@ public class RichiestaController {
 		model.addAttribute("richiesta", new Richiesta());
 		model.addAttribute("paesi", (new Paesi()).getPaesi());
 		model.addAttribute("regioni", (new Regioni()).getRegioni());
+		SystemController.getUtenteAndRole(model);
 		return "richiestaForm";
 	}
 
@@ -46,6 +47,7 @@ public class RichiestaController {
 	public String salvaRichiesta(@Valid @ModelAttribute("richiesta") Richiesta richiesta, Model model) {
 		services.salvaRichiesta(richiesta);
 		model.addAttribute("fotografi", fotografo.primi10Fotografi());
+		SystemController.getUtenteAndRole(model);
 		return "home";
 	}
 
@@ -55,6 +57,7 @@ public class RichiestaController {
 	@GetMapping(value = "/richieste")
 	public String getRichieste(Model model) {
 		model.addAttribute("richieste", this.services.prime10Richieste());
+		SystemController.getUtenteAndRole(model);
 		return "richieste";
 	}
 
@@ -64,6 +67,7 @@ public class RichiestaController {
 	 */
 	@GetMapping(value = "/richiesta/{id}")
 	public String getRichiesta(@PathVariable("id") Long id, Model model) {
+		SystemController.getUtenteAndRole(model);
 		if(id!=null) {
 			model.addAttribute("richiesta", this.services.richiestaPerId(id));
 			return "richiesta";
@@ -73,5 +77,4 @@ public class RichiestaController {
 			return "richieste";
 		}
 	}
-
 }
