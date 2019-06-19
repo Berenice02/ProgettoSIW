@@ -29,7 +29,7 @@ public class FotoServices {
 	public Foto salvaFoto(MultipartFile file, Album album, Fotografo fotografo) {
 		Foto f = null;
 		if(!file.isEmpty()) {
-			f = new Foto(file.getOriginalFilename(), album, fotografo);
+			f = new Foto(file.getOriginalFilename(), album);
 			//per creare le cartelle in locale
 			Path cartella = Paths.get(upload, fotografo.getId().toString(), album.getId().toString());
 			new File(cartella.toString()).mkdirs();
@@ -65,7 +65,7 @@ public class FotoServices {
 		Foto f = repo.findById(id).get();
 		repo.delete(f);
 		try {
-			Files.deleteIfExists(Paths.get(upload, f.getNome()));
+			Files.deleteIfExists(Paths.get(upload, f.getFotografo().getId().toString(), f.getAlbum().getId().toString(), f.getNome()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

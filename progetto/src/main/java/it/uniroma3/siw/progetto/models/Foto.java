@@ -25,10 +25,10 @@ public class Foto implements Comparable<Foto> {
 		this.data = LocalDateTime.now();
 	}
 	
-	public Foto(String nome, Album album, Fotografo fotografo) {
+	public Foto(String nome, Album album) {
 		this();
 		this.nome = nome;
-		this.fotografo = fotografo;
+		this.fotografo = album.getFotografo();
 		this.album = album;
 	}
 
