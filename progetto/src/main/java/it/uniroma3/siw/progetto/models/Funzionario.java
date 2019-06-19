@@ -12,14 +12,14 @@ public class Funzionario {
 	private Long id;
 	private String nome;
 	private String cognome;
-	private String codiceIdentificativo;
+	private String username;
 	private String password;
 	private String role;
 	
-	public Funzionario(String nome, String cognome, String codiceIdentificativo, String password) {
+	public Funzionario(String nome, String cognome, String username, String password) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.codiceIdentificativo = codiceIdentificativo;
+		this.username = username;
 		this.password = password;
 		this.role = "ADMIN";
 	}
@@ -48,12 +48,12 @@ public class Funzionario {
 		this.cognome = cognome;
 	}
 
-	public String getCodiceIdentificativo() {
-		return this.codiceIdentificativo;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setCodiceIdentificativo(String codiceIdentificativo) {
-		this.codiceIdentificativo = codiceIdentificativo;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +36,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 			//definisce come si fa il login
 			.and().formLogin()
 				//dopo il login avvenuto con successo, va alla pagina di benvenuto(da modificare)
-				.defaultSuccessUrl("/daModificare)")
+				.defaultSuccessUrl("/daModificare")
 			//definisco la parte logout
 			.and().logout()
 				//mando una get alla pagina di logout
@@ -46,7 +48,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(this.buildDatasource())
-			.authoritiesByUsernameQuery("SELECT username, role from funzionario WHERE username=?)")
+			.authoritiesByUsernameQuery("SELECT username, role from funzionario WHERE username=?")
 			.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM funzionario WHERE username=?");
 	}
 	@Bean
@@ -57,5 +59,10 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 		dataSource.setUsername(environment.getProperty("spring.datasource.username"));
 		dataSource.setPassword(environment.getProperty("spring.datasource.password"));
 		return dataSource;
+	}
+	
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 }

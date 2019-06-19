@@ -19,7 +19,7 @@ public class FunzionarioValidator implements Validator {
 	public void validate(Object o, Errors error) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "nome", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "cognome", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(error, "codiceIdentificativo", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "username", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "password", "required");
 	}
 }
