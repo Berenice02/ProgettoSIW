@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Dettagli richiesta</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/richiesta.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	<header th:insert = "~{toolbar :: toolbar}"></header>
+	
+	<div class="container">
+		<h4>Dettagli richiesta</h4>
+		<div class="row">
+			<div class="col col-sm text-capitalize">
+				Nome: <span th:text="${richiesta.nome}"></span>
+			</div>
+			<div class="col col-sm text-capitalize">
+				Cognome: <span th:text="${richiesta.cognome}"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-sm">
+				Email: <span th:text="${richiesta.email}"></span>
+			</div>
+			<div class="col col-sm">
+				Telefono: <span th:text="${richiesta.telefono}"></span>
+			</div>
+		</div>
+		<div class="row mb-4">
+			<div class="col col-sm">
+				Codice Fiscale: <span class=text-uppercase th:text="${richiesta.codiceFiscale}"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-sm">
+				Paese: <span th:text="${richiesta.paese}"></span>
+			</div>
+			<div class="col col-sm">
+				Regione: <span th:text="${richiesta.regione}"></span>
+			</div>
+		</div>
+		<div class="row mb-4">
+			<div class="col col-sm-7 text-capitalize">
+				Indirizzo: <span th:text="${richiesta.indirizzo}"></span>
+			</div>
+			<div class="col col-sm-2">
+				N°: <span th:text="${richiesta.civico}"></span>
+			</div>
+			<div class="col col-sm-3">
+				CAP: <span th:text="${richiesta.cap}"></span>
+			</div>
+		</div>
+		<div class="row col mb-4">
+			Note: <span class="ml-1" th:text="${richiesta.note}"></span>
+		</div>
+	</div>
+	<div class="container">
+	<b>QUI CI SONO TUTTE LE FOTO DELLA RICHIESTA</b>
+	</div>
+	
+	<footer th:insert = "~{footer :: footer}"></footer>	
+</body>
+</html>

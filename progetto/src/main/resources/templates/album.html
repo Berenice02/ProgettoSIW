@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Album</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/album.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	<header th:insert = "~{toolbar :: toolbar}"></header>
+	
+	<main role="main">
+	<section class="jumbotron text-center">
+		<div class="container">
+			<h1 class="jumbotron-heading text-capitalize" th:text="${album.nome}">Nome album</h1>
+			<p>
+				<!-- Questo bottone lo può vedere solo l'admin -->
+				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}" class="btn btn-primary my-2">Modifica Informazioni</a>
+				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/nuovaFoto'}" class="btn btn-primary my-2 ml-auto">Nuova Foto</a>
+			</p>
+		</div>
+	</section>
+	<!-- da modificare l'icona -->
+	<div class="album py-5 bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4" th:each="album : ${albums}">
+					<div class="card mb-4 shadow-sm">
+						<svg class="bd-placeholder-img card-img-top" width="100%"
+							height="225" xmlns="http://www.w3.org/2000/svg"
+							preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+							aria-label="Placeholder: Thumbnail">
+							<rect width="100%" height="100%" fill="#55595c"></rect>
+                		</svg>
+						<div class="card-body">
+							<p class="card-text" th:text="${album.nome}">Nome della foto</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id}}"
+										class="btn btn-sm btn-outline-secondary">Visualizza</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	
+	<footer th:insert = "~{footer :: footer}"></footer>
+
+</body>
+</html>

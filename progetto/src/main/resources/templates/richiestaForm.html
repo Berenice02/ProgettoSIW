@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+<title>Richiesta Foto</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/richiestaForm.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	<header th:insert = "~{toolbar :: toolbar}"></header>
+	
+	<div class="container">
+		<div class="py-5 text-center">
+			
+			<h2>Richiesta Foto</h2>
+			<!-- Modificare il nome che non mi piace -->
+			<p class="lead">Completa le informazioni qui sotto per effettuare la richiesta delle foto</p>
+		</div>
+		<div class="row">
+			<div class="col-md-4 order-md-2 mb-4">
+				<h4 class="d-flex justify-content-between align-items-center mb-3">
+					<span class="text-muted">Le tue Foto</span>
+					<!-- qui ci va il numero delle foto selezionate -->
+					<span class="badge badge-secondary badge-pill">3</span>
+				</h4>
+				
+				<!-- UNA VOLTA IMPLEMENTATE LE FOTO, SOSTITUIRE I PLACEHOLDER CON QUESTO
+				<ul class="list-group mb-3">
+					<li class="list-group-item d-flex justify-content-between lh-condensed"
+					th:each= foto : ${fotografie}>
+						<div>
+							<h6 class="my-0" th:text=${foto.nome}>Nome foto</h6>
+							questa non so se funziona
+							<small class="text-muted" th:text=${foto.fotografo.nome}>Nome Fotografo</small>
+						</div><span class="text-muted">Anteprima foto</span>
+					</li>
+				</ul>  -->
+				
+				<!-- PLACEHOLDER -->
+				<ul class="list-group mb-3">
+					<li
+						class="list-group-item d-flex justify-content-between lh-condensed">
+						<div>
+							<h6 class="my-0">Nome foto</h6>
+							<!-- qui ci potremmo mettere il nome del fotografo -->
+							<small class="text-muted">Nome Fotografo</small>
+						</div> <!-- anteprima foto (!?) --> <span class="text-muted">Anteprima
+							foto</span>
+					</li>
+					<li
+						class="list-group-item d-flex justify-content-between lh-condensed">
+						<div>
+							<h6 class="my-0">Nome foto</h6>
+							<!-- qui ci potremmo mettere il nome del fotografo -->
+							<small class="text-muted">Nome Fotografo</small>
+						</div> <!-- anteprima foto --> <span class="text-muted">Anteprima
+							foto</span>
+					</li>
+					<li
+						class="list-group-item d-flex justify-content-between lh-condensed">
+						<div>
+							<h6 class="my-0">Nome foto</h6>
+							<!-- qui ci potremmo mettere il nome del fotografo -->
+							<small class="text-muted">Nome Fotografo</small>
+						</div> <!-- anteprima foto --> <span class="text-muted">Anteprima
+							foto</span>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="col-md-8 order-md-1">
+				<!-- da modificare -->
+				<h4 class="mb-3">Informazioni Cliente</h4>
+				<form th:action="@{/salvaRichiesta}" method="post" th:object="${richiesta}">
+				<!-- class="needs-validation" novalidate=""  -->
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="nome">Nome <span class="text-muted">(Obbligatorio)</span></label>
+							<input type="text" class="form-control"
+								placeholder="Mario" th:field="*{nome}" required="">
+						</div>
+						
+						
+						<div class="col-md-6 mb-3">
+							<label for="cognome">Cognome <span class="text-muted">(Obbligatorio)</span></label>
+							<input type="text" class="form-control"
+								placeholder="Rossi" th:field="*{cognome}" required="">
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="email">Email <span class="text-muted">(Obbligatoria)</span></label>
+							<input type="email" class="form-control"
+								placeholder="you@example.com" th:field="*{email}" required="">
+						</div>
+						
+						<div class="col-md-6 mb-3">
+							<label for="telefono">Telefono Cellulare <span
+								class="text-muted">(Obbligatorio)</span></label> <input type="text"
+								class="form-control" placeholder="" th:field="*{telefono}" required="">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12 mb-3">
+							<label for="codiceFiscale">Codice Fiscale <span
+								class="text-muted">(Obbligatorio)</span></label>
+								<input type="text" class="form-control"
+								placeholder="RSSMRA80A01H501L" th:field="*{codiceFiscale}" required=""
+								pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+								maxlength="16">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-9 mb-3">
+							<label for="indirizzo">Indirizzo <span class="text-muted">(Obbligatorio)</span></label>
+							<input type="text" class="form-control"
+								placeholder="Via della Vasca Navale" th:field="*{indirizzo}" required="">
+						</div>
+						
+						<div class="col-md-3 mb-3">
+							<label for="civico">N°</label>
+							<input type="text" class="form-control"
+							placeholder="79" th:field="*{civico}" required=""
+								maxlength="3">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-5 mb-3">
+							<label for="paese">Paese</label> 
+							<select th:field="*{paese}"
+								class="custom-select d-block w-100" required="">
+								<option th:value="seleziona" th:text="Seleziona..." selected></option>
+								<option th:each="p : ${paesi}" th:value="${p}" th:text="${p}"></option>
+							</select>
+						</div>
+						
+						<div class="col-md-4 mb-3">
+							<label for="regione">Regione</label>
+							<select th:field="*{regione}"
+								class="custom-select d-block w-100" required="">
+								<option th:value="seleziona" th:text="Seleziona..." selected></option>
+								<option th:each="r : ${regioni}" th:value="${r}" th:text="${r}"></option>
+							</select>
+						</div>
+						
+						<div class="col-md-3 mb-3">
+							<label for="cap">CAP</label>
+							<input type="text" class="form-control"
+								placeholder="00118" th:field="*{cap}" required=""
+								maxlength="5" pattern="^[0-9]{5}$">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12 mb-3">
+							<label for="note">Note <span class="text-muted">(Opzionale)</span></label>
+							<input type="text" class="form-control h-100" placeholder="" th:field="*{note}" >
+						</div>
+					</div>
+					
+					<hr class="mb-4">
+					<button class="btn btn-primary btn-lg btn-block" type="submit">Salva</button>
+				</form>
+			</div>
+		</div>
+		<footer th:insert = "~{footer :: footer}"></footer>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Titolo della pagina</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/toolbar.css" rel="stylesheet">
+</head>
+
+<body>
+	<header th:fragment="toolbar">
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi
+					</a></li>
+					<li><a class="nav-link p-2" th:href="@{/richieste}">
+							Richieste </a></li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item"><a class="nav-link p-2"
+					th:href="@{/nuovaRichiesta}">Carrello</a></li>
+				<li><button class="nav-link p-2"
+						onclick="document.getElementById('id01').style.display='block'"
+						style="background-color: rgb(61, 47, 150)">Login</button></li>
+			</ul>
+		</nav>
+	</header>
+
+	<header th:fragment="normal">
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi
+					</a></li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item"><a class="nav-link p-2"
+					th:ref="@{/nuovaRichiesta}">Carrello</a></li>
+				<li class="nav-item"><button class="nav-link p-2"
+						onclick="document.getElementById('id01').style.display='block'"
+						style="width: auto;">Login</button></li>
+			</ul>
+		</nav>
+	</header>
+
+	<header th:fragment="admin">
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi
+					</a></li>
+					<li><a class="nav-link p-2" th:href="@{/richieste}">
+							Richieste </a></li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item">
+					<p>
+						Hello, <span th:text="${session.user.name}">Sebastian</span>!
+					</p>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+		<!-- QUI CI VANNO LE VARIE VISTE -->
+	</div>
+<<<<<<< HEAD
+	<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+=======
+>>>>>>> parent of 30331da... Merge pull request #7 from Berenice02/Matteo
+</body>
+
+</html>

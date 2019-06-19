@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Album</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	<header th:insert = "~{toolbar :: toolbar}"></header>
+	
+	<div class="container">
+		<div class="col-md-8 order-md-1">
+			
+			<form th:action="@{'/fotografo/' + ${fotografo.id} + '/salvaAlbum/' + ${album.id}}" method="post" th:object="${album}">
+				<!-- class="needs-validation" novalidate=""  -->
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label for="nome"><h4>Nome Album</h4><span class="text-muted">(Obbligatorio)</span></label>
+						<input type="text" class="form-control"	th:field="*{nome}" required="">
+					</div>
+				</div>
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Salva</button>
+			</form>
+		</div>
+	</div>
+	<!-- DA AGGIUNGERE LE FOTO -->
+</body>
+</html>

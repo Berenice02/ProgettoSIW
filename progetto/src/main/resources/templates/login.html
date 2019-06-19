@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Login</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/login.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	<header th:insert="~{toolbar :: toolbar}"></header>
+<body>
+
+	<!-- bottone di login (va sostituito con quello della toolbar) -->
+	<div th:fragment="login">
+	<div id="id01" class="modal">
+		<form class="modal-content animate" action="/login" method="POST">
+			<div class="imgcontainer">
+				<!-- avvia la schermata di login con l'animazione -->
+				<span onclick="document.getElementById('id01').style.display='none'"
+					class="close" title="Chiudi">&times;</span>
+				<!-- logo Silph SPA -->
+				<img src="/images/silphSpa.jpg" alt="Avatar" class="avatar">
+			</div>
+
+			<div class="container">
+				<label for="username"><b>Username</b></label> <input type="text"
+					placeholder="Enter Username" name="username" required> <label
+					for="password"><b>Password</b></label> <input type="password"
+					placeholder="Enter Password" name="password" required>
+				<button class="nav-link p-2 mx-auto my-3" type="submit" style="background-color: rgb(61, 47, 150)">Login</button>
+				<!-- necessario ?-->
+				<label> <input type="checkbox" checked="checked"
+					name="remember"> Ricordami
+				</label>
+			</div>
+		</form>
+	</div>
+	</div>
+</body>
+</html>
