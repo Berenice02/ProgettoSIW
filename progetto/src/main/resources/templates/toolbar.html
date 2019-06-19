@@ -54,10 +54,10 @@
 			</div>
 			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
 				<li class="nav-item"><a class="nav-link p-2"
-					th:ref="@{/nuovaRichiesta}">Carrello</a></li>
-				<li class="nav-item"><button class="nav-link p-2"
+					th:href="@{/nuovaRichiesta}">Carrello</a></li>
+				<li><button class="nav-link p-2"
 						onclick="document.getElementById('id01').style.display='block'"
-						style="width: auto;">Login</button></li>
+						style="background-color: rgb(61, 47, 150)">Login</button></li>
 			</ul>
 		</nav>
 	</header>
@@ -76,9 +76,10 @@
 				</ul>
 			</div>
 			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li><a class="nav-link p-2" href="/logout">Logout</a></li>
 				<li class="nav-item">
 					<p>
-						Hello, <span th:text="${session.user.name}">Sebastian</span>!
+						Hello, <span th:utext="${username}">Sebastian</span>!
 					</p>
 				</li>
 			</ul>
@@ -87,7 +88,6 @@
 	<div class="container">
 		<!-- QUI CI VANNO LE VARIE VISTE -->
 	</div>
-<<<<<<< HEAD
 	<script>
 		// Get the modal
 		var modal = document.getElementById('id01');
@@ -99,8 +99,6 @@
 			}
 		}
 	</script>
-=======
->>>>>>> parent of 30331da... Merge pull request #7 from Berenice02/Matteo
 </body>
 
 </html>

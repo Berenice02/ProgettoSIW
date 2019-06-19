@@ -24,7 +24,7 @@
 
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
-	<header th:insert = "~{toolbar :: login}"></header>
+	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
 	
 	<main role="main">
 	<section class="jumbotron text-center">

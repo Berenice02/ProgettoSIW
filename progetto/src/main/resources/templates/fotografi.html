@@ -22,9 +22,8 @@
 <body class="bg-light">
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE 
-	VERRA' MODIFICATO COSI' UNA VOLTA INSERITO GLI UTENTI
-	<header th:insert = "~{toolbar :: (${user.isAdmin}? #{admin} : #{normal})}"></header> -->
-	<header th:insert="~{toolbar :: login}"></header>
+	VERRA' MODIFICATO COSI' UNA VOLTA INSERITO GLI UTENTI -->
+	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
 
 	<div class="container my-5 mr-auto">
 		<!-- Questo bottone lo può vedere solo l'admin -->
