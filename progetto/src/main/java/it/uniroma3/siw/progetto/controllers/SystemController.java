@@ -4,6 +4,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,17 +30,26 @@ public class SystemController {
 	@Autowired
 	FotoServices foto;
 	
+	public static void getUtenteAndRole(Model model) {
+		UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String role = details.getAuthorities().iterator().next().getAuthority();
+		model.addAttribute("username", details.getUsername());
+		model.addAttribute("role", role);
+	}
+	
 	/*semplicemente per visualizzare la home con i primi 10 fotografi del database*/
 	@RequestMapping(value = "/")
 	public String root(Model model) {
 		model.addAttribute("fotografi", this.fotografo.primi10Fotografi());
+		SystemController.getUtenteAndRole(model);
 		return "home";
 	}
 	
-	/* serve per restituire la pagina di login */
-	@RequestMapping("/login")
-	public String autentica() {
-		return "login.html";
+	/*serve per visualizzare la pagina di benvenuto*/
+	@RequestMapping("/welcome")
+	public String welcome(Model model) {
+		SystemController.getUtenteAndRole(model);
+		return "home";
 	}
 	
 	/*per visualizzare i risultati di una ricerca.
@@ -70,7 +81,7 @@ public class SystemController {
 		model.addAttribute("fotografi", fotografi);
 		model.addAttribute("albums", albums);
 		model.addAttribute("fotografie", fotografie);
+		SystemController.getUtenteAndRole(model);
 		return "search";
 	}
-
 }

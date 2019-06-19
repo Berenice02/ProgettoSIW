@@ -33,6 +33,7 @@ public class FotografoController {
 	@RequestMapping(value = "/nuovoFotografo")
 	public String nuovoFotografo(Model model) {
 		model.addAttribute("fotografo", new Fotografo());
+		SystemController.getUtenteAndRole(model);
 		return "fotografoForm";
 	}
 
@@ -53,6 +54,7 @@ public class FotografoController {
 		else
 			services.salvaFotografo(fotografo);
 		model.addAttribute("fotografi", services.primi10Fotografi());
+		SystemController.getUtenteAndRole(model);
 		return "home";
 	}
 
@@ -64,6 +66,7 @@ public class FotografoController {
 		Fotografo f = this.services.fotografoPerId(id);
 		model.addAttribute("fotografo", f);
 		model.addAttribute("albums", album.albumPerFotografo(f));
+		SystemController.getUtenteAndRole(model);
 		return "fotografoForm";
 	}
 
@@ -73,6 +76,7 @@ public class FotografoController {
 	@GetMapping(value = "/fotografi")
 	public String getFotografi(Model model) {
 		model.addAttribute("fotografi", this.services.tuttiFotografi());
+		SystemController.getUtenteAndRole(model);
 		return "fotografi";
 	}
 
@@ -83,6 +87,7 @@ public class FotografoController {
 	 */
 	@RequestMapping(value = "/fotografo/{id}")
 	public String getFotografo(@PathVariable("id") Long id, Model model) {
+		SystemController.getUtenteAndRole(model);
 		if(id!=null) {
 			Fotografo f = this.services.fotografoPerId(id);
 			model.addAttribute("fotografo", f);
@@ -94,5 +99,4 @@ public class FotografoController {
 			return "fotografi";
 		}
 	}
-
 }
