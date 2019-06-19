@@ -35,6 +35,12 @@ public class SystemController {
 		return "home";
 	}
 	
+	/* serve per restituire la pagina di login */
+	@RequestMapping("/login")
+	public String autentica() {
+		return "login.html";
+	}
+	
 	/*per visualizzare i risultati di una ricerca.
 	 * viene chiamato cliccando "cerca" sulla home
 	 */

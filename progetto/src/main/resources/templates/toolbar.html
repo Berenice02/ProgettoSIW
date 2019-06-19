@@ -54,6 +54,27 @@
 			</ul>
 		</nav>
 	</header>
+	
+	<header th:fragment="login">
+		<nav
+			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
+			<b class="logo navbar-brand mx-auto">SILPH SPA</b>
+			<div class="container">
+				<ul class="navbar-nav flex-row ml-5">
+					<li><a class="nav-link p-2" th:href="@{/}"> Home </a></li>
+					<li><a class="nav-link p-2" th:href="@{/fotografi}">Fotografi </a></li>
+					<li>
+						<a class="nav-link p-2" th:href="@{/richieste}"> Richieste </a>
+					</li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item"><a class="nav-link p-2" th:href="@{/nuovaRichiesta}">Carrello</a></li>
+				<li class="nav-item"><a class="nav-link p-2"></a><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></li>
+			</ul>
+		</nav>
+	</header>
+	
 	<header th:fragment="admin">
 		<nav
 			class="navbar fixed-top navbar-expand flex-column flex-md-row bd-navbar">
@@ -77,6 +98,17 @@
 	<div class="container">
 		<!-- QUI CI VANNO LE VARIE VISTE -->
 	</div>
+	<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </body>
 
 </html>
