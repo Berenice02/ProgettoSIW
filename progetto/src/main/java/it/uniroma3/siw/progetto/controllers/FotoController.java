@@ -34,7 +34,7 @@ public class FotoController {
 	 * o in quella per modificare i dati dell'album (AlbumForm)
 	 */
 	@PostMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/salvaFoto")
-	public String nuovoAlbum(@PathVariable("idFotografo") Long idFotografo,
+	public String nuovaFoto(@PathVariable("idFotografo") Long idFotografo,
 			@PathVariable("idAlbum") Long idAlbum, Model model,
 			@RequestParam(value = "files") MultipartFile[] files) {
 		//prendi i riferimenti ad album e fotografo
@@ -60,7 +60,7 @@ public class FotoController {
 	 * Altrimenti, senza id vengono visualizzate tutte le foto di quell'album
 	 */
 	@PostMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/foto/{idFoto}")
-	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model,
+	public String getFoto(@PathVariable("idAlbum") Long idAlbum, Model model,
 			@PathVariable("idFotografo") Long idFotografo, @PathVariable("idFoto") Long idFoto) {
 		//prendi i riferimenti ad album e fotografo
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
