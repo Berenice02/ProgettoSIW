@@ -47,6 +47,7 @@ public class DBpopulation implements ApplicationRunner {
 		fotografo.deleteAll();
 		album.deleteAll();
 		foto.deleteAll();
+		funzionario.deleteAll();
 	}
 	
 	private void addAll() {
