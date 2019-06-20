@@ -31,10 +31,9 @@
 	<main role="main">
 	<section class="jumbotron text-center">
 		<div class="container">
-			<h1 class="jumbotron-heading text-capitalize" th:text="${album.nome}">Nome
-				album</h1>
-			<p>
-				<!-- Questo bottone lo può vedere solo l'admin -->
+
+			<h1 class="jumbotron-heading text-capitalize" th:text="${album.nome}">Nome album</h1>
+			<p th:if="${role} == 'ADMIN'">
 				<a
 					th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}"
 					class="btn btn-primary my-2">Modifica Informazioni</a>

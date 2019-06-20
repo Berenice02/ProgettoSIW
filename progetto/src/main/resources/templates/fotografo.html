@@ -32,7 +32,7 @@
 			<h1 class="jumbotron-heading text-capitalize" th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Nome e Cognome del Fotografo</h1>
 			<p class="lead text-muted" th:text="${fotografo.email}">Informazioni del Fotografo</p>
 			<p class="lead text-muted" th:text="${fotografo.telefono}"></p>
-			<p>
+			<p th:if="${role} == 'ADMIN'">
 				<!-- Questo bottone lo può vedere solo l'admin -->
 				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/modifica'}" class="btn btn-primary my-2">Modifica Informazioni</a>
 				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/nuovoAlbum'}" class="btn btn-primary my-2 ml-auto">Nuovo Album</a>
