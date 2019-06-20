@@ -20,13 +20,15 @@ public class FotografoServices {
 	}
 	
 	@Transactional
-	public void aggiornaFotografo(Long id, Fotografo f) {
+	public Fotografo aggiornaFotografo(Long id, Fotografo f) {
 		Fotografo fotografo = repo.findById(id).get();
 		fotografo.setNome(f.getNome());
 		fotografo.setCognome(f.getCognome());
 		fotografo.setEmail(f.getEmail());
 		fotografo.setTelefono(f.getTelefono());
 		fotografo.setAlbum(f.getAlbum());
+		fotografo.setPropic(f.getPropic());
+		return fotografo;
 	}
 	
 	@Transactional
@@ -47,6 +49,11 @@ public class FotografoServices {
 	@Transactional
 	public void rimuoviFotografo(Fotografo f){
 		repo.delete(f);
+	}
+	
+	@Transactional
+	public void deleteAll() {
+		repo.deleteAll();
 	}
 	
 	@Transactional

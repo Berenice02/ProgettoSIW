@@ -17,6 +17,7 @@
 <!-- Custom styles for this template -->
 <link href="/CSS/main.css" rel="stylesheet">
 <link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/login.css" rel="stylesheet">
 <link href="/CSS/album.css" rel="stylesheet">
 </head>
 
@@ -24,39 +25,59 @@
 
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
-	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
-	
+	<header
+		th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
+
 	<main role="main">
 	<section class="jumbotron text-center">
 		<div class="container">
+
 			<h1 class="jumbotron-heading text-capitalize" th:text="${album.nome}">Nome album</h1>
 			<p th:if="${role} == 'ADMIN'">
-				<!-- Questo bottone lo può vedere solo l'admin -->
-				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}" class="btn btn-primary my-2">Modifica Informazioni</a>
-				<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/nuovaFoto'}" class="btn btn-primary my-2 ml-auto">Nuova Foto</a>
+				<a
+					th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}"
+					class="btn btn-primary my-2">Modifica Informazioni</a>
 			</p>
+			<div class="form inline">
+				<form
+					th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/salvaFoto'}"
+					method="post" enctype="multipart/form-data">
+					<input class="btn btn-primary my-2 ml-auto" type="file"
+						name="files" multiple>
+					<button class="btn btn-primary my-2 ml-auto" type="submit">Carica</button>
+				</form>
+			</div>
 		</div>
 	</section>
-	<!-- da modificare l'icona -->
+	
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4" th:each="album : ${albums}">
-					<div class="card mb-4 shadow-sm">
-						<svg class="bd-placeholder-img card-img-top" width="100%"
-							height="225" xmlns="http://www.w3.org/2000/svg"
-							preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-							aria-label="Placeholder: Thumbnail">
-							<rect width="100%" height="100%" fill="#55595c"></rect>
-                		</svg>
-						<div class="card-body">
-							<p class="card-text" th:text="${album.nome}">Nome della foto</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id}}"
-										class="btn btn-sm btn-outline-secondary">Visualizza</a>
-								</div>
+				<div class="col-md-4 pl-5 mb-5" th:each="foto : ${fotografie}">
+					<div class="mb-4">
+						<img class="card-img-top"
+							th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
+					</div>
+					<div class="pl-5">
+						<button class="btn btn-primary"
+							onclick="document.getElementById('id02').style.display='block'">
+							Visualizza</button>
+					<div id="id02" class="foto modal">
+						<!-- in realtà questo th:action dovrebbe inserire nel carrello -->
+						<form class="contenuto modal-content animate" method="post"
+							th:action="@{'/fotografo/' + ${idFotografo} + 
+							'/album/' + ${idAlbum} + '/foto/' + ${idFoto}}">
+							<div class="fotocontainer mb-4">
+								<span
+									onclick="document.getElementById('id02').style.display='none'"
+									
+									class="close" title="Chiudi">&times;</span>
+									<img class="fotografia"
+									th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
 							</div>
+							<button class="btn btn-primary mr-auto ml-auto mb-5"
+								type="submit">Aggiungi al carrello</button>
+						</form>
 						</div>
 					</div>
 				</div>
@@ -64,12 +85,23 @@
 		</div>
 	</div>
 	</main>
-	
-	<footer th:insert = "~{footer :: footer}"></footer>
-	
-		<script>
+
+	<footer th:insert="~{footer :: footer}"></footer>
+
+	<script>
 		// Get the modal
 		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+	<script>
+		// Get the modal
+		var modal = document.getElementById('id02');
 
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
