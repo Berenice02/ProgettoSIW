@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Lista richieste</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/richieste.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
+	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
+	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
+	<div class="container">
+	<h4>Richieste</h4>
+	<ul>
+		<li th:each="richiesta : ${richieste}">
+			<a class="richiesta text-capitalize" th:href="@{'/richiesta' + '/' + ${richiesta.id}}"
+			th:text="${richiesta.nome} +' '+ ${richiesta.cognome}">placeholder</a>
+		</li>
+	</ul>	
+	</div>
+	
+	<footer th:insert = "~{footer :: footer}"></footer>	
+	
+		<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>

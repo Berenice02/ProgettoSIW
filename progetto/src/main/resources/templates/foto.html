@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Foto</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link href="/CSS/main.css" rel="stylesheet">
+<link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/login.css" rel="stylesheet">
+<link href="/CSS/album.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+	<div class="foto">
+		<!-- in realtà questo th:action dovrebbe inserire nel carrello -->
+		<form class="contenuto modal-content animate" method="get"
+			th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/foto/' + ${foto.id} + '/aggiungiFoto'}">
+			<div class="fotocontainer mb-4">
+				<img class="fotografia"	th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
+			</div>
+			<button class="btn btn-primary mr-auto ml-auto mb-5" type="submit">Aggiungi	al carrello</button>
+			<a class="btn btn-primary mr-auto ml-auto mb-5" th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id}}">Indietro</a>
+		</form>
+	</div>
+</body>
+</html>
