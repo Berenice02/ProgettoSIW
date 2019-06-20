@@ -111,7 +111,7 @@ public class DBpopulation implements ApplicationRunner {
 						e.printStackTrace();
 					}
 					
-					MultipartFile result = new Foto(name, a, content, path.toString());
+					MultipartFile result = new Foto(name, a, content);
 					
 					foto.salvaFoto(result, a, f);
 					}

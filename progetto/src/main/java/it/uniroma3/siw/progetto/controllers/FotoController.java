@@ -1,6 +1,5 @@
 package it.uniroma3.siw.progetto.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class FotoController {
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		Album a = album.albumPerId(idAlbum);
 		//salva ogni foto
-		List<Foto> fotografie = new ArrayList<>();
+		List<Foto> fotografie = this.services.fotoPerAlbum(a);
 		for(MultipartFile file : files) {
 			Foto foto = this.services.salvaFoto(file, a, f);
 			fotografie.add(foto);
