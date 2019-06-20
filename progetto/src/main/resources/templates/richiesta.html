@@ -71,8 +71,10 @@
 			Note: <span class="ml-1" th:text="${richiesta.note}"></span>
 		</div>
 	</div>
-	<div class="container">
-	<b>QUI CI SONO TUTTE LE FOTO DELLA RICHIESTA</b>
+	<div class="container mb-3 mt-2"><b>FOTO DELLA RICHIESTA</b></div>
+	<div class="container" th:each="foto : ${fotografie}">
+	<img class="fotografia" th:src="'/images/'+ ${foto.fotografo.id} + '/' + ${foto.album.id} + '/' +
+	${foto.nome}">
 	</div>
 	
 	<footer th:insert = "~{footer :: footer}"></footer>	

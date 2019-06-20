@@ -64,9 +64,8 @@
 							Visualizza</button>
 					<div id="id02" class="foto modal">
 						<!-- in realtà questo th:action dovrebbe inserire nel carrello -->
-						<form class="contenuto modal-content animate" method="post"
-							th:action="@{'/fotografo/' + ${idFotografo} + 
-							'/album/' + ${idAlbum} + '/foto/' + ${idFoto}}">
+						<form class="contenuto modal-content animate" method="get"
+							th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/foto/' + ${foto.id} + '/aggiungiFoto'}">
 							<div class="fotocontainer mb-4">
 								<span
 									onclick="document.getElementById('id02').style.display='none'"
@@ -76,7 +75,7 @@
 									th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
 							</div>
 							<button class="btn btn-primary mr-auto ml-auto mb-5"
-								type="submit">Aggiungi al carrello</button>
+								type="submit" th:if="${role} != 'ADMIN'">Aggiungi al carrello</button>
 						</form>
 						</div>
 					</div>
