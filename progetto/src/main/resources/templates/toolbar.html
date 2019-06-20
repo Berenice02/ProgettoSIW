@@ -76,12 +76,10 @@
 				</ul>
 			</div>
 			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-				<li><a class="nav-link p-2" href="/logout">Logout</a></li>
 				<li class="nav-item p-2">
-					<p>
-						Hello, <span th:utext="${username}">Sebastian</span>!
-					</p>
+					 <span class="utente" th:utext="'Hello,' + ${username}">Sebastian</span>
 				</li>
+				<li><a class="nav-link p-2" href="/logout">Logout</a></li>
 			</ul>
 		</nav>
 	</header>

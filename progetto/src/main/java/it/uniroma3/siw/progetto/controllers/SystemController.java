@@ -1,11 +1,17 @@
 package it.uniroma3.siw.progetto.controllers;
 
 import java.util.Set;
+
 import java.util.TreeSet;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +36,7 @@ public class SystemController {
 	@Autowired
 	FotoServices foto;
 	
+	@Autowired
 	public static void getUtenteAndRole(Model model) {
 		UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String role = details.getAuthorities().iterator().next().getAuthority();
@@ -39,15 +46,28 @@ public class SystemController {
 	
 	/*semplicemente per visualizzare la home con i primi 10 fotografi del database*/
 	@RequestMapping(value = "/")
-	public String root(Model model) {
+	public String root(Model model, Authentication auth) {
 		model.addAttribute("fotografi", this.fotografo.primi10Fotografi());
+		if(auth != null)
+			SystemController.getUtenteAndRole(model);
 		return "home";
 	}
 	
-	/*serve per visualizzare la pagina di benvenuto*/
-	@RequestMapping("/welcome")
+	/*semplicemente per visualizzare la home con i primi 10 fotografi del database*/
+	@RequestMapping(value = "/welcome")
 	public String welcome(Model model) {
+		model.addAttribute("fotografi", this.fotografo.primi10Fotografi());
 		SystemController.getUtenteAndRole(model);
+		return "home";
+	}
+	
+	/*serve per effettuare il logout*/
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth.isAuthenticated())
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		model.addAttribute("fotografi", this.fotografo.primi10Fotografi());
 		return "home";
 	}
 	
@@ -80,7 +100,6 @@ public class SystemController {
 		model.addAttribute("fotografi", fotografi);
 		model.addAttribute("albums", albums);
 		model.addAttribute("fotografie", fotografie);
-		SystemController.getUtenteAndRole(model);
 		return "search";
 	}
 }

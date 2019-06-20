@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,13 +97,15 @@ public class AlbumController {
 	 * Altrimenti, senza id vengono visualizzate tutti gli album di quel fotografo
 	 */
 	@RequestMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}")
-	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo) {
+	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo, Authentication auth) {
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		if(idAlbum!=null) {
 			Album a = this.services.albumPerId(idAlbum);
 			List<Foto> fotografie = this.foto.fotoPerAlbum(a);
 			
 			model.addAttribute("fotografo", f);
+			if(auth != null)
+				SystemController.getUtenteAndRole(model);
 			model.addAttribute("album", a);
 			model.addAttribute("fotografie", fotografie);
 			model.addAttribute("path", f.getId().toString()+"/"+a.getId().toString());
