@@ -21,10 +21,10 @@ import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.models.Funzionario;
 import it.uniroma3.siw.progetto.models.Richiesta;
 import it.uniroma3.siw.progetto.repositories.AlbumRepository;
-import it.uniroma3.siw.progetto.repositories.FotografoRepository;
 import it.uniroma3.siw.progetto.repositories.FunzionarioRepository;
 import it.uniroma3.siw.progetto.repositories.RichiestaRepository;
 import it.uniroma3.siw.progetto.services.FotoServices;
+import it.uniroma3.siw.progetto.services.FotografoServices;
 
 /*classe per popolare il database con fotografi, album e richieste
  * mancano le foto e gli admin
@@ -35,7 +35,7 @@ public class DBpopulation implements ApplicationRunner {
 	private RichiestaRepository richiesta;
 	
 	@Autowired
-	private FotografoRepository fotografo;
+	private FotografoServices fotografo;
 	
 	@Autowired
 	private AlbumRepository album;
@@ -65,10 +65,10 @@ public class DBpopulation implements ApplicationRunner {
 		Fotografo f2 = new Fotografo("carlo", "verdi", "c.v@gmail.com", "3411234567");
 		Fotografo f3 = new Fotografo("paola", "neri", "p.n@gmail.com", "3431234567");
 		Fotografo f4 = new Fotografo("pietro", "russo", "p.r@gmail.com", "3441234567");
-		fotografo.save(f1);
-		fotografo.save(f2);
-		fotografo.save(f3);
-		fotografo.save(f4);
+		fotografo.salvaFotografo(f1);
+		fotografo.salvaFotografo(f2);
+		fotografo.salvaFotografo(f3);
+		fotografo.salvaFotografo(f4);
 		
 		Album a1 = new Album("albe", f1);
 		Album a2 = new Album("tramonti", f1);
@@ -113,12 +113,12 @@ public class DBpopulation implements ApplicationRunner {
 					
 					MultipartFile result = new Foto(name, a, content);
 					
-					foto.salvaFoto(result, a, f);
+					Foto ultima = foto.salvaFoto(result, a, f);
+					f.setPropic(ultima);
+					fotografo.aggiornaFotografo(f.getId(), f);
 					}
 			}
-		}		
-		
-		
+		}
 		
 		Richiesta r1 = new Richiesta("matteo", "giunta", "m.g@gmail.com", "3401234567",
 				"mttgnt97t12h501s", "via vasca navale", "79", "Italia", "Lazio", "00131");

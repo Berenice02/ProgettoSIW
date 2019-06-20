@@ -45,6 +45,11 @@ public class FotoController {
 			Foto foto = this.services.salvaFoto(file, a, f);
 			fotografie.add(foto);
 		}
+
+		//imposta l'ultima foto aggiunta come propic del fotografo
+		f.setPropic(fotografie.get((fotografie.size())-1));
+		fotografo.aggiornaFotografo(idFotografo, f);
+		
 		//aggiungi tutto al model
 		model.addAttribute("fotografo", f);
 		model.addAttribute("album", a);

@@ -31,10 +31,13 @@ public class Foto implements Comparable<Foto>, MultipartFile {
 		this.data = LocalDateTime.now();
 	}
 	
-	public Foto(String nome, Album album) {
+	public Foto(String nome, Fotografo fotografo) {
 		this();
 		this.nome = nome;
-		this.fotografo = album.getFotografo();
+		this.fotografo = fotografo;
+	}
+	public Foto(String nome, Album album) {
+		this(nome, album.getFotografo());
 		this.album = album;
 	}
 	

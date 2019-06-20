@@ -18,17 +18,19 @@ public class Fotografo implements Comparable<Fotografo>{
 	@OneToMany(mappedBy = "fotografo")
 	private List<Album> album;
 
+	@OneToOne
+	private Foto propic;
+	
 	public Fotografo() {
-		//no op
+		this.album = new ArrayList<>();
 	}
 
 	public Fotografo(String nome, String cognome, String mail, String numero) {
-		super();
+		this();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = mail;
 		this.telefono = numero;
-		this.album = new ArrayList<>();
 	}
 
 
@@ -63,6 +65,14 @@ public class Fotografo implements Comparable<Fotografo>{
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	public Foto getPropic() {
+		return propic;
+	}
+
+	public void setPropic(Foto propic) {
+		this.propic = propic;
+	}
+
 	public List<Album> getAlbum() {
 		return album;
 	}

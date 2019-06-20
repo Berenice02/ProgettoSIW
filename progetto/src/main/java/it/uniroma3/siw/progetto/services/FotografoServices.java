@@ -27,6 +27,7 @@ public class FotografoServices {
 		fotografo.setEmail(f.getEmail());
 		fotografo.setTelefono(f.getTelefono());
 		fotografo.setAlbum(f.getAlbum());
+		fotografo.setPropic(f.getPropic());
 	}
 	
 	@Transactional
@@ -47,6 +48,11 @@ public class FotografoServices {
 	@Transactional
 	public void rimuoviFotografo(Fotografo f){
 		repo.delete(f);
+	}
+	
+	@Transactional
+	public void deleteAll() {
+		repo.deleteAll();
 	}
 	
 	@Transactional
