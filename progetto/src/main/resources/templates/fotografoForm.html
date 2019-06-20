@@ -24,7 +24,7 @@
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
 	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
-
+	<br><br><br>
 	<div class="container">
 		<div class="col-md-8 order-md-1">
 			
@@ -64,7 +64,7 @@
 				<button class="btn btn-primary btn-lg btn-block" type="submit">Salva</button>
 			</form>
 			<hr class="mb-4 mt-4">
-			<div class = "row mb-3 ml-4">
+			<div class = "row mb-3 ml-4" th:if="${fotografo.id} != NULL">
 			<h4 class="mb-3 mt-3 ml-1 mr-5">Album</h4>
 			<a th:href="@{'/fotografo/' + ${fotografo.id} + '/nuovoAlbum'}" class="btn btn-primary my-2 ml-auto">Nuovo Album</a>
 			</div>

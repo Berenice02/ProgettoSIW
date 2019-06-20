@@ -25,7 +25,7 @@
 	VERRA' MODIFICATO COSI' UNA VOLTA INSERITO GLI UTENTI -->
 	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
 
-	<div class="container my-5 mr-auto">
+	<div class="container my-5 mr-auto" th:if="${role} == 'ADMIN'">
 		<!-- Questo bottone lo può vedere solo l'admin -->
 		<a th:href="@{/nuovoFotografo}" class="btn btn-primary btn-lg">Aggiungi un nuovo fotografo</a>
 	</div>
