@@ -1,5 +1,8 @@
 package it.uniroma3.siw.progetto.models;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -8,13 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
-public class Foto implements Comparable<Foto> {
+public class Foto implements Comparable<Foto>, MultipartFile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
 	private LocalDateTime data;
+	private byte[] bytes;
 	
 	@ManyToOne
 	private Fotografo fotografo;
@@ -22,15 +28,26 @@ public class Foto implements Comparable<Foto> {
 	private Album album;
 	
 	public Foto() {
-		//no op
+		this.data = LocalDateTime.now();
 	}
 	
-	public Foto(String nome, Fotografo fotografo, Album album) {
-		super();
+	public Foto(String nome) {
+		this();
 		this.nome = nome;
-		this.data = LocalDateTime.now();
+	}
+	
+	public Foto(String nome, Fotografo fotografo) {
+		this(nome);
 		this.fotografo = fotografo;
+	}
+	public Foto(String nome, Album album) {
+		this(nome, album.getFotografo());
 		this.album = album;
+	}
+	
+	public Foto(String nome, Album album, byte[] content) {
+		this(nome, album);
+		this.setBytes(content);
 	}
 
 	public Long getId() {
@@ -64,6 +81,10 @@ public class Foto implements Comparable<Foto> {
 		this.album = album;
 	}
 
+	public void setBytes(byte[] bytes) {
+		this.bytes = bytes;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,6 +112,54 @@ public class Foto implements Comparable<Foto> {
 	@Override
 	public int compareTo(Foto o) {
 		return this.getNome().compareTo(o.getNome());
+	}
+
+	@Override
+	public String getName() {
+		return this.nome;
+	}
+
+	@Override
+	public String getOriginalFilename() {
+		return this.nome;
+	}
+
+	@Override
+	public String getContentType() {
+		return "image/jpeg";
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+
+	@Override
+	public long getSize() {
+		long b = 0;
+		try {
+			b = this.getBytes().length;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	@Override
+	public byte[] getBytes() throws IOException {
+		return this.bytes;
+	}
+
+	@Override
+	public InputStream getInputStream() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void transferTo(File dest) throws IOException, IllegalStateException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

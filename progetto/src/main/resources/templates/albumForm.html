@@ -17,6 +17,7 @@
 <!-- Custom styles for this template -->
 <link href="/CSS/main.css" rel="stylesheet">
 <link href="/CSS/toolbar.css" rel="stylesheet">
+<link href="/CSS/login.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -25,7 +26,8 @@
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
 	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
 	<br><br><br>
-	<div class="container">
+	<div class="container mt-5 pt-5">
+
 		<div class="col-md-8 order-md-1">
 			
 			<form th:action="@{'/fotografo/' + ${fotografo.id} + '/salvaAlbum/' + ${album.id}}" method="post" th:object="${album}">
@@ -39,6 +41,20 @@
 				<hr class="mb-4">
 				<button class="btn btn-primary btn-lg btn-block" type="submit">Salva</button>
 			</form>
+			<hr class="mb-4 mt-4">
+			<div class="album py-5 bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 pl-5 mb-5" th:each="foto : ${fotografie}">
+					<div class="mb-4">
+						<img class="card-img-top"
+							th:src="'/images/'+ ${foto.fotografo.id} + '/'
+							+ ${foto.album.id} + '/' + ${foto.nome}">
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		</div>
 	</div>
 	<!-- DA AGGIUNGERE LE FOTO -->

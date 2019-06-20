@@ -1,0 +1,23 @@
+.card-img-top {
+	width: 10rem;
+	height: 10rem:
+}
+
+/* Modal Content/Box */
+.foto {
+	width: 100%; /* Could be more or less, depending on screen size */
+}
+
+.contenuto {
+	margin: 5% 1% 15% 5%;
+	width: 91%; /* Could be more or less, depending on screen size */
+}
+
+.fotocontainer {
+	border-left:thin;
+	position: relative;
+}
+
+.fotografia {
+	width: 100%;
+}

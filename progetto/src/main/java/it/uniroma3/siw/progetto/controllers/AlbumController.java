@@ -1,5 +1,7 @@
 package it.uniroma3.siw.progetto.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.uniroma3.siw.progetto.models.Album;
+import it.uniroma3.siw.progetto.models.Foto;
 import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.AlbumValidator;
+import it.uniroma3.siw.progetto.services.FotoServices;
 import it.uniroma3.siw.progetto.services.FotografoServices;
 
 @Controller
@@ -28,6 +32,9 @@ public class AlbumController {
 
 	@Autowired
 	FotografoServices fotografo;
+	
+	@Autowired
+	FotoServices foto;
 
 	/*per creare un nuovo album. viene chiamato cliccando "nuovo album" 
 	 * nella pagina del fotografo (Fotografo)
@@ -56,7 +63,9 @@ public class AlbumController {
 		 */
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		if(!idAlbum.equals("null")) {
-			this.services.aggiornaAlbum(Long.decode(idAlbum), album);
+			Long ID = Long.decode(idAlbum);
+			album.setPropic(this.services.albumPerId(ID).getPropic());
+			this.services.aggiornaAlbum(ID, album);
 		}
 		else {
 			album.setFotografo(f);
@@ -74,9 +83,11 @@ public class AlbumController {
 	@GetMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/modifica")
 	public String modificaAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo) {
 		Album a = this.services.albumPerId(idAlbum);
+		List<Foto> fotografie = this.foto.fotoPerAlbum(a);
+		
 		model.addAttribute("album", a);
-		//da aggiungere al model le foto dell'album
 		model.addAttribute("fotografo", fotografo.fotografoPerId(idFotografo));
+		model.addAttribute("fotografie", fotografie);
 		SystemController.getUtenteAndRole(model);
 		return "albumForm";
 	}
@@ -89,10 +100,16 @@ public class AlbumController {
 	public String getAlbum(@PathVariable("idAlbum") Long idAlbum, Model model, @PathVariable("idFotografo") Long idFotografo, Authentication auth) {
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		if(idAlbum!=null) {
+			Album a = this.services.albumPerId(idAlbum);
+			List<Foto> fotografie = this.foto.fotoPerAlbum(a);
+			
 			model.addAttribute("fotografo", f);
-			model.addAttribute("album", this.services.albumPerId(idAlbum));
 			if(auth != null)
 				SystemController.getUtenteAndRole(model);
+			model.addAttribute("album", a);
+			model.addAttribute("fotografie", fotografie);
+			model.addAttribute("path", f.getId().toString()+"/"+a.getId().toString());
+
 			return "album";
 		}
 		else {

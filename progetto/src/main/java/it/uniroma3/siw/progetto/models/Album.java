@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Album implements Comparable<Album> {
@@ -23,6 +24,9 @@ public class Album implements Comparable<Album> {
 	private List<Foto> foto;
 	@ManyToOne
 	private Fotografo fotografo;
+	
+	@OneToOne
+	private Foto propic;
 	
 	public Album() {
 		this.data = LocalDateTime.now();
@@ -66,6 +70,14 @@ public class Album implements Comparable<Album> {
 
 	public void setFotografo(Fotografo fotografo) {
 		this.fotografo = fotografo;
+	}
+
+	public Foto getPropic() {
+		return propic;
+	}
+
+	public void setPropic(Foto propic) {
+		this.propic = propic;
 	}
 
 	public List<Foto> getFoto() {
