@@ -105,6 +105,7 @@ public class AlbumController {
 			model.addAttribute("fotografo", f);
 			model.addAttribute("album", a);
 			model.addAttribute("fotografie", fotografie);
+			model.addAttribute("path", f.getId().toString()+"/"+a.getId().toString());
 			return "album";
 		}
 		else {

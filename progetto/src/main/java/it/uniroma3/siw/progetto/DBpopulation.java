@@ -104,13 +104,14 @@ public class DBpopulation implements ApplicationRunner {
 				if(file.isFile()) {
 					String name = file.getName();
 					byte[] content = null;
+					Path path = Paths.get(cartella.toString(), file.getName());
 					try {
-						content = Files.readAllBytes(Paths.get(cartella.toString(), file.getName()));
+						content = Files.readAllBytes(path);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					
-					MultipartFile result = new Foto(name, a, content);
+					MultipartFile result = new Foto(name, a, content, path.toString());
 					
 					foto.salvaFoto(result, a, f);
 					}
