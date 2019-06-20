@@ -3,8 +3,10 @@ package it.uniroma3.siw.progetto.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,28 +63,31 @@ public class FotoController {
 		return "album";
 	}
 	
-	/*per visualizzare una foto dell'album. viene chiamato cliccando "visualizza"
+	/*per visualizzare una foto della foto. viene chiamato cliccando "visualizza"
 	 * nell'album o "vedi" nei risultati di una ricerca
 	 * Altrimenti, senza id vengono visualizzate tutte le foto di quell'album
 	 */
-	@PostMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/foto/{idFoto}")
+	@GetMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/foto/{idFoto}")
 	public String getFoto(@PathVariable("idAlbum") Long idAlbum, Model model,
-			@PathVariable("idFotografo") Long idFotografo, @PathVariable("idFoto") Long idFoto) {
+			@PathVariable("idFotografo") Long idFotografo, @PathVariable("idFoto") Long idFoto,
+			Authentication auth) {
 		//prendi i riferimenti ad album e fotografo
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		Album a = album.albumPerId(idAlbum);
-		SystemController.getUtenteAndRole(model);
+		if(auth != null)
+			SystemController.getUtenteAndRole(model);
 		if(idFoto!=null) {
 			Foto foto = this.services.fotoPerId(idFoto);
 			model.addAttribute("fotografo", f);
 			model.addAttribute("album", a);
+			model.addAttribute("path", f.getId().toString() + '/' + a.getId().toString());
 			model.addAttribute("foto", foto);
-			return "album";
+			return "foto";
 		}
 		else {
 			model.addAttribute("fotografo", f);
 			model.addAttribute("albums", album.albumPerFotografo(f));
-			return "fotografo";
+			return "album";
 		}
 	}
 
