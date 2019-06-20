@@ -1,8 +1,8 @@
 package it.uniroma3.siw.progetto.controllers;
 
+import java.util.HashMap;
+
 import javax.validation.Valid;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,10 +62,11 @@ public class RichiestaController {
 	 */
 	@PostMapping(value = "/salvaRichiesta")
 	public String salvaRichiesta(@Valid @ModelAttribute Richiesta richiesta, Model model) {
-		Richiesta r = services.salvaRichiesta(richiesta);
-		model.addAttribute("richiesta",this.services.richiestaPerId(r.getId()));
-		model.addAttribute("fotografie", this.richiesta.getFoto().values());
-		richiesta = new Richiesta();
+		Richiesta r = new Richiesta(richiesta);	
+		services.salvaRichiesta(r);
+		model.addAttribute("richiesta",r);
+		model.addAttribute("fotografie", r.getFoto().values());
+		richiesta.setFoto(new HashMap<>());
 		return "richiesta";
 	}
 
@@ -87,8 +88,9 @@ public class RichiestaController {
 	public String getRichiesta(@PathVariable("id") Long id, Model model) {
 		SystemController.getUtenteAndRole(model);
 		if(id!=null) {
-			model.addAttribute("richiesta", this.services.richiestaPerId(id));
-			model.addAttribute("fotografie", this.richiesta.getFoto().keySet());
+			Richiesta richiestaPerId = this.services.richiestaPerId(id);
+			model.addAttribute("richiesta", richiestaPerId);
+			model.addAttribute("fotografie", richiestaPerId.getFoto().values());
 			return "richiesta";
 		}
 		else {

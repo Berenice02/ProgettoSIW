@@ -57,6 +57,22 @@ public class Richiesta {
 		this(nome, cognome, email, telefono, codiceFiscale, indirizzo, civico, paese, regione, cap);
 		this.note = note;
 	}
+	
+	public Richiesta(Richiesta r) {
+		this();
+		this.nome = r.nome;
+		this.cognome = r.cognome;
+		this.email = r.email;
+		this.telefono = r.telefono;
+		this.codiceFiscale = r.codiceFiscale;
+		this.indirizzo = r.indirizzo;
+		this.civico = r.civico;
+		this.paese = r.paese;
+		this.regione = r.regione;
+		this.cap = r.cap;
+		this.note = r.note;
+		this.foto = r.foto;	
+	}
 
 	public Long getId() {
 		return id;
