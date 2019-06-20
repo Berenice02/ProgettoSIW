@@ -30,7 +30,9 @@
 		<!-- Questo bottone lo può vedere solo l'admin -->
 		<a th:href="@{/nuovoFotografo}" class="btn btn-primary btn-lg">Aggiungi un nuovo fotografo</a>
 	</div>
-	<br><br><br>
+	<br th:if="${role} != 'ADMIN'">
+	<br th:if="${role} != 'ADMIN'">
+	<br th:if="${role} != 'ADMIN'">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 mb-5" th:each="fotografo : ${fotografi}">

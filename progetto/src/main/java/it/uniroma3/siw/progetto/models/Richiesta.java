@@ -34,12 +34,12 @@ public class Richiesta {
 	private Map<Long, Foto> foto;
 	
 	public Richiesta() {
-		//no op
+		this.foto = new HashMap<>();
 	}
 
 	public Richiesta(String nome, String cognome, String email, String telefono, String codiceFiscale, String indirizzo,
 			String civico, String paese, String regione, String cap) {
-		super();
+		this();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
@@ -50,7 +50,6 @@ public class Richiesta {
 		this.paese = paese;
 		this.regione = regione;
 		this.cap = cap;
-		this.foto = new HashMap<>();
 	}
 
 	public Richiesta(String nome, String cognome, String email, String telefono, String codiceFiscale, String indirizzo,
