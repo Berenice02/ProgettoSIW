@@ -24,7 +24,8 @@
 
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
-	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
+	<header
+		th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
 	<div class="container">
 		<h5>Dettagli richiesta</h5>
 		<div class="row">
@@ -45,7 +46,8 @@
 		</div>
 		<div class="row mb-4">
 			<div class="col col-sm">
-				Codice Fiscale: <span class=text-uppercase th:text="${richiesta.codiceFiscale}"></span>
+				Codice Fiscale: <span class=text-uppercase
+					th:text="${richiesta.codiceFiscale}"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -71,15 +73,20 @@
 			Note: <span class="ml-1" th:text="${richiesta.note}"></span>
 		</div>
 	</div>
-	<div class="container mb-3 mt-2"><b>FOTO DELLA RICHIESTA</b></div>
-	<div class="container" th:each="foto : ${fotografie}">
-	<img th:if="${foto} != null" class="fotografia" th:src="'/images/'+ ${foto.fotografo.id} + '/' + ${foto.album.id} + '/' +
-	${foto.nome}">
+	<div class="container mb-3 mt-2 px-auto">
+		<b>FOTO DELLA RICHIESTA</b>
 	</div>
-	
-	<footer th:insert = "~{footer :: footer}"></footer>	
-	
-		<script>
+	<div class="container row mb-3 mt-2 mx-auto">
+		<div class="col-lg pl-5 mb-5" th:each="foto : ${fotografie}">
+			<img th:if="${foto} != null" class="fotografiaRichiesta"
+				th:src="'/images/'+ ${foto.fotografo.id} + '/' + ${foto.album.id} + '/' +
+	${foto.nome}">
+		</div>
+	</div>
+
+	<footer th:insert="~{footer :: footer}"></footer>
+
+	<script>
 		// Get the modal
 		var modal = document.getElementById('id01');
 
