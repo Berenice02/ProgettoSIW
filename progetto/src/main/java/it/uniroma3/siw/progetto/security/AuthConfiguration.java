@@ -30,13 +30,11 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 			//serve per definire CHI può accedere e a QUALI pagine
 			.authorizeRequests()
 				//tutti possono accedere alla home page
-				.antMatchers(HttpMethod.GET, "/home").permitAll()
-				//solo chi è admin può accedere(da modificare)
-				.antMatchers(HttpMethod.GET, "/daModificare").hasAnyAuthority("ADMIN")
+				.antMatchers(HttpMethod.GET, "/").permitAll()
 			//definisce come si fa il login (da cambiare con quello creato)
 			.and().formLogin().loginPage("/login")
 				//dopo il login avvenuto con successo, va alla pagina di benvenuto(da modificare)
-				.defaultSuccessUrl("/fotografi", true)
+				.defaultSuccessUrl("/welcome")
 				//se il login non ha avuto successo
 				.failureUrl("/login.html?error=true")
 			//definisco la parte logout
@@ -44,7 +42,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 				//mando una get alla pagina di logout
 				.logoutUrl("/logout")
 				//se il logout avviene con successo, torna alla home
-				.logoutSuccessUrl("/home");
+				.logoutSuccessUrl("/");
 	}
 	
 	@Autowired
