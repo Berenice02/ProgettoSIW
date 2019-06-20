@@ -71,4 +71,9 @@ public class FotoServices {
 		}
 	}
 	
+	@Transactional
+	public void deleteAll() {
+		repo.deleteAll();
+	}
+	
 }

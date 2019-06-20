@@ -1,20 +1,30 @@
 package it.uniroma3.siw.progetto;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.progetto.models.Album;
+import it.uniroma3.siw.progetto.models.Foto;
 import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.models.Funzionario;
 import it.uniroma3.siw.progetto.models.Richiesta;
 import it.uniroma3.siw.progetto.repositories.AlbumRepository;
-import it.uniroma3.siw.progetto.repositories.FotoRepository;
 import it.uniroma3.siw.progetto.repositories.FotografoRepository;
 import it.uniroma3.siw.progetto.repositories.FunzionarioRepository;
 import it.uniroma3.siw.progetto.repositories.RichiestaRepository;
+import it.uniroma3.siw.progetto.services.FotoServices;
 
 /*classe per popolare il database con fotografi, album e richieste
  * mancano le foto e gli admin
@@ -31,7 +41,7 @@ public class DBpopulation implements ApplicationRunner {
 	private AlbumRepository album;
 	
 	@Autowired
-	private FotoRepository foto;
+	private FotoServices foto;
 	
 	@Autowired
 	private FunzionarioRepository funzionario;
@@ -66,20 +76,48 @@ public class DBpopulation implements ApplicationRunner {
 		Album a4 = new Album("cani", f2);
 		Album a5 = new Album("uccelli", f2);
 		Album a6 = new Album("rettili", f2);
-		Album a7 = new Album("strada", f3);
-		Album a8 = new Album("lampioni", f3);
-		Album a9 = new Album("ristoranti", f3);
-		Album a10 = new Album("cibo", f4);
-		album.save(a1);
-		album.save(a2);
-		album.save(a3);
-		album.save(a4);
-		album.save(a5);
-		album.save(a6);
-		album.save(a7);
-		album.save(a8);
-		album.save(a9);
-		album.save(a10);
+		Album a7 = new Album("lampioni", f3);
+		Album a8 = new Album("cibo", f4);
+		
+		List<Album> albums = new ArrayList<Album>() {
+			private static final long serialVersionUID = 1L;
+		{
+			add(a1);
+			add(a2);
+			add(a3);
+			add(a4);
+			add(a5);
+			add(a6);
+			add(a7);
+			add(a8);
+		}};
+		
+		album.saveAll(albums);
+		
+		String upload = System.getProperty("user.dir")+"/src/main/resources/static/images";	
+		
+		for(Album a : albums) {
+			Fotografo f = a.getFotografo();
+			Path pathCartella = Paths.get(upload, f.getId().toString(), a.getId().toString());
+			File cartella = pathCartella.toFile();
+			for(File file : cartella.listFiles()) {
+				if(file.isFile()) {
+					String name = file.getName();
+					byte[] content = null;
+					try {
+						content = Files.readAllBytes(Paths.get(cartella.toString(), file.getName()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					MultipartFile result = new Foto(name, a, content);
+					
+					foto.salvaFoto(result, a, f);
+					}
+			}
+		}		
+		
+		
 		
 		Richiesta r1 = new Richiesta("matteo", "giunta", "m.g@gmail.com", "3401234567",
 				"mttgnt97t12h501s", "via vasca navale", "79", "Italia", "Lazio", "00131");
