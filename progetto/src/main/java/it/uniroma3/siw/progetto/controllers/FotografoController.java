@@ -48,14 +48,16 @@ public class FotografoController {
 		 * Quando il fotografo esiste (e quindi ha un id) il Long si recupera
 		 * tramite il metodo statico Long.decode(String s)
 		 */
+		Fotografo f;
 		if(!idFotografo.equals("null")) {
-			services.aggiornaFotografo(Long.decode(idFotografo), fotografo);
+			f = services.aggiornaFotografo(Long.decode(idFotografo), fotografo);
 		}
 		else
-			services.salvaFotografo(fotografo);
-		model.addAttribute("fotografi", services.primi10Fotografi());
+			f = services.salvaFotografo(fotografo);
+		model.addAttribute("fotografo", f);
+		model.addAttribute("albums", album.albumPerFotografo(f));
 		SystemController.getUtenteAndRole(model);
-		return "home";
+		return "fotografo";
 	}
 
 	/*per modificare i dati del fotografo. viene chiamato cliccando "modifica informazioni"
