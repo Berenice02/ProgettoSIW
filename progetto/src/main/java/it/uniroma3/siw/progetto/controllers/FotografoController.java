@@ -50,7 +50,9 @@ public class FotografoController {
 		 */
 		Fotografo f;
 		if(!idFotografo.equals("null")) {
-			f = services.aggiornaFotografo(Long.decode(idFotografo), fotografo);
+			Long ID = Long.decode(idFotografo);
+			fotografo.setPropic(this.services.fotografoPerId(ID).getPropic());
+			f = services.aggiornaFotografo(ID, fotografo);
 		}
 		else
 			f = services.salvaFotografo(fotografo);

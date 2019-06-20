@@ -26,12 +26,13 @@ public class AlbumServices {
 	}
 	
 	@Transactional
-	public void aggiornaAlbum(Long id, Album a) {
+	public Album aggiornaAlbum(Long id, Album a) {
 		Album album = repo.findById(id).get();
 		album.setNome(a.getNome());
 		album.setFoto(a.getFoto());
 		album.setPropic(a.getPropic());
 		//solo questi tre perché fotografo e data non si possono modificare
+		return album;
 	}
 	
 	@Transactional

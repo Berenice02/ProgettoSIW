@@ -62,7 +62,9 @@ public class AlbumController {
 		 */
 		Fotografo f = fotografo.fotografoPerId(idFotografo);
 		if(!idAlbum.equals("null")) {
-			this.services.aggiornaAlbum(Long.decode(idAlbum), album);
+			Long ID = Long.decode(idAlbum);
+			album.setPropic(this.services.albumPerId(ID).getPropic());
+			this.services.aggiornaAlbum(ID, album);
 		}
 		else {
 			album.setFotografo(f);
