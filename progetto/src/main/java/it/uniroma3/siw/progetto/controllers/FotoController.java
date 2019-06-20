@@ -31,6 +31,8 @@ public class FotoController {
 	/*per salvare una foto. viene chiamato cliccando "carica" 
 	 * nella pagina dell'album (Album)
 	 * o in quella per modificare i dati dell'album (AlbumForm)
+	 * NON CARICA LA VISUALIZZAZIONE DELLE FOTO PER UN BUG DI ECLIPSE
+	 * BISOGNA FARE REFRESH AL PROGETTO
 	 */
 	@PostMapping(value = "/fotografo/{idFotografo}/album/{idAlbum}/salvaFoto")
 	public String nuovaFoto(@PathVariable("idFotografo") Long idFotografo,
