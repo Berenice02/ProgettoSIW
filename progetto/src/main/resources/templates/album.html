@@ -38,7 +38,7 @@
 					th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/modifica'}"
 					class="btn btn-primary my-2">Modifica Informazioni</a>
 			</p>
-			<div class="form inline">
+			<div class="form inline" th:if="${role} == 'ADMIN'">
 				<form
 					th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/salvaFoto'}"
 					method="post" enctype="multipart/form-data">
