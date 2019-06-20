@@ -25,9 +25,9 @@
 	<!-- QUESTO SERVE AD AGGIUNGERE LA TOOLBAR (E PIU' SOTTO IL FOOTER)
 	SENZA DOVER DUPLICARE/RISCRIVERE IL CODICE -->
 	<header th:insert="${role} ?  ~{toolbar :: admin} : ~{toolbar :: normal}"></header>
-	
+	<br><br><br>
 	<div class="container">
-		<h4>Dettagli richiesta</h4>
+		<h5>Dettagli richiesta</h5>
 		<div class="row">
 			<div class="col col-sm text-capitalize">
 				Nome: <span th:text="${richiesta.nome}"></span>
