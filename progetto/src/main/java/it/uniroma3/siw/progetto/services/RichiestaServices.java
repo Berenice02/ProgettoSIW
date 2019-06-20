@@ -27,5 +27,10 @@ public class RichiestaServices {
 		List<Richiesta> richiesta = (List<Richiesta>) repo.findAll();
 		return richiesta.subList(0, Integer.min(10, richiesta.size()));
 	}
+	
+	@Transactional
+	public void deleteAll() {
+		repo.deleteAll();
+	}
 
 }

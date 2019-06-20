@@ -21,10 +21,10 @@ import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.models.Funzionario;
 import it.uniroma3.siw.progetto.models.Richiesta;
 import it.uniroma3.siw.progetto.repositories.FunzionarioRepository;
-import it.uniroma3.siw.progetto.repositories.RichiestaRepository;
 import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.FotoServices;
 import it.uniroma3.siw.progetto.services.FotografoServices;
+import it.uniroma3.siw.progetto.services.RichiestaServices;
 
 /*classe per popolare il database con fotografi, album e richieste
  * mancano le foto e gli admin
@@ -32,7 +32,7 @@ import it.uniroma3.siw.progetto.services.FotografoServices;
 @Component
 public class DBpopulation implements ApplicationRunner {
 	@Autowired
-	private RichiestaRepository richiesta;
+	private RichiestaServices richiesta;
 	
 	@Autowired
 	private FotografoServices fotografo;
@@ -123,15 +123,36 @@ public class DBpopulation implements ApplicationRunner {
 			}
 		}
 		
+		Foto fo1 = a1.getPropic();
+		Foto fo2 = a2.getPropic();
+		Foto fo3 = a3.getPropic();
+		Foto fo4 = a4.getPropic();
+		Foto fo5 = a5.getPropic();
+		Foto fo6 = a6.getPropic();
+		Foto fo7 = a7.getPropic();
+		Foto fo8 = a8.getPropic();
+		
 		Richiesta r1 = new Richiesta("matteo", "giunta", "m.g@gmail.com", "3401234567",
 				"mttgnt97t12h501s", "via vasca navale", "79", "Italia", "Lazio", "00131");
+		r1.getFoto().put(fo1.getId(), fo1);
+		r1.getFoto().put(fo3.getId(), fo3);
+		r1.getFoto().put(fo5.getId(), fo5);
+		
 		Richiesta r2 = new Richiesta("elisa", "foderaro", "e.f@gmail.com", "3421234567",
 				"fdrlse98b41h501q", "viale marconi", "596", "Italia", "Lazio", "00132");
+		r2.getFoto().put(fo2.getId(), fo2);
+		r2.getFoto().put(fo4.getId(), fo4);
+		r2.getFoto().put(fo6.getId(), fo6);
+		
 		Richiesta r3 = new Richiesta("mario", "rossi", "m.r@gmail.com", "3471234567",
 				"mrarss70t20h501n", "via ostiense", "159", "Italia", "Lazio", "00154");
-		richiesta.save(r1);
-		richiesta.save(r2);
-		richiesta.save(r3);
+		r3.getFoto().put(fo6.getId(), fo6);
+		r3.getFoto().put(fo7.getId(), fo7);
+		r3.getFoto().put(fo8.getId(), fo8);
+		
+		richiesta.salvaRichiesta(r1);
+		richiesta.salvaRichiesta(r2);
+		richiesta.salvaRichiesta(r3);
 		
 		Funzionario fu1 = new Funzionario("Matteo", "Giunta", "MTGN97", null);
 		String fu1pass = new BCryptPasswordEncoder().encode("mgpass");

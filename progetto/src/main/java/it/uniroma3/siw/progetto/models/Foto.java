@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +29,9 @@ public class Foto implements Comparable<Foto>, MultipartFile {
 	private Fotografo fotografo;
 	@ManyToOne
 	private Album album;
+	
+	@ManyToMany(mappedBy = "foto", cascade = CascadeType.ALL)
+	private Map<Long, Richiesta> richieste;
 	
 	public Foto() {
 		this.data = LocalDateTime.now();

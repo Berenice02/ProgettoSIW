@@ -62,7 +62,7 @@ public class RichiestaController {
 	 */
 	@PostMapping(value = "/salvaRichiesta")
 	public String salvaRichiesta(@Valid @ModelAttribute Richiesta richiesta, Model model) {
-		Richiesta r = services.salvaRichiesta(richiesta, richiesta.getFoto());
+		Richiesta r = services.salvaRichiesta(richiesta);
 		model.addAttribute("richiesta",this.services.richiestaPerId(r.getId()));
 		model.addAttribute("fotografie", this.richiesta.getFoto().values());
 		richiesta = new Richiesta();
