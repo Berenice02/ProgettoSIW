@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="col-md-4 mb-5" th:each="fotografo : ${fotografi}">
 				<img class="bd-placeholder-img rounded-circle" width="140"
-					height="140" focusable="false" role="img"
+					height="140" focusable="false" role="img" th:if="${fotografo.propic} != null"
 					th:src="@{'/images/' + ${fotografo.id} + '/' + ${fotografo.propic.album.id} + '/' + ${fotografo.propic.nome}}">
 				<h2 class="text-capitalize"
 					th:text="${fotografo.nome} + ' ' + ${fotografo.cognome}">Nome Fotografo</h2>
