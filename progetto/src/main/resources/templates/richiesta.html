@@ -73,7 +73,7 @@
 	</div>
 	<div class="container mb-3 mt-2"><b>FOTO DELLA RICHIESTA</b></div>
 	<div class="container" th:each="foto : ${fotografie}">
-	<img class="fotografia" th:src="'/images/'+ ${foto.fotografo.id} + '/' + ${foto.album.id} + '/' +
+	<img th:if="${foto} != null" class="fotografia" th:src="'/images/'+ ${foto.fotografo.id} + '/' + ${foto.album.id} + '/' +
 	${foto.nome}">
 	</div>
 	

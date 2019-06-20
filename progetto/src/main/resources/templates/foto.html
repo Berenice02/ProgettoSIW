@@ -24,8 +24,8 @@
 <body class="bg-light">
 	<div class="foto">
 		<!-- in realtà questo th:action dovrebbe inserire nel carrello -->
-		<form class="contenuto modal-content animate" method="post"
-			th:action="@{/fotografi}">
+		<form class="contenuto modal-content animate" method="get"
+			th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/foto/' + ${foto.id} + '/aggiungiFoto'}">
 			<div class="fotocontainer mb-4">
 				<img class="fotografia"	th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
 			</div>
