@@ -20,9 +20,9 @@ import it.uniroma3.siw.progetto.models.Foto;
 import it.uniroma3.siw.progetto.models.Fotografo;
 import it.uniroma3.siw.progetto.models.Funzionario;
 import it.uniroma3.siw.progetto.models.Richiesta;
-import it.uniroma3.siw.progetto.repositories.AlbumRepository;
 import it.uniroma3.siw.progetto.repositories.FunzionarioRepository;
 import it.uniroma3.siw.progetto.repositories.RichiestaRepository;
+import it.uniroma3.siw.progetto.services.AlbumServices;
 import it.uniroma3.siw.progetto.services.FotoServices;
 import it.uniroma3.siw.progetto.services.FotografoServices;
 
@@ -38,7 +38,7 @@ public class DBpopulation implements ApplicationRunner {
 	private FotografoServices fotografo;
 	
 	@Autowired
-	private AlbumRepository album;
+	private AlbumServices album;
 	
 	@Autowired
 	private FotoServices foto;
@@ -116,6 +116,9 @@ public class DBpopulation implements ApplicationRunner {
 					Foto ultima = foto.salvaFoto(result, a, f);
 					f.setPropic(ultima);
 					fotografo.aggiornaFotografo(f.getId(), f);
+					
+					a.setPropic(ultima);
+					album.aggiornaAlbum(a.getId(), a);
 					}
 			}
 		}
