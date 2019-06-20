@@ -3,6 +3,7 @@ package it.uniroma3.siw.progetto.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,9 +79,10 @@ public class FotografoController {
 	 * viene chiamato cliccando "fotografi" nella toolbar
 	 */
 	@GetMapping(value = "/fotografi")
-	public String getFotografi(Model model) {
+	public String getFotografi(Model model, Authentication auth) {
 		model.addAttribute("fotografi", this.services.tuttiFotografi());
-		SystemController.getUtenteAndRole(model);
+		if(auth != null)
+			SystemController.getUtenteAndRole(model);
 		return "fotografi";
 	}
 
@@ -90,12 +92,13 @@ public class FotografoController {
 	 * Altrimenti, senza id vengono visualizzati i primi 10 fotografi del database
 	 */
 	@RequestMapping(value = "/fotografo/{id}")
-	public String getFotografo(@PathVariable("id") Long id, Model model) {
-		SystemController.getUtenteAndRole(model);
+	public String getFotografo(@PathVariable("id") Long id, Model model, Authentication auth) {
 		if(id!=null) {
 			Fotografo f = this.services.fotografoPerId(id);
 			model.addAttribute("fotografo", f);
 			model.addAttribute("albums", this.album.albumPerFotografo(f));
+			if(auth != null)
+				SystemController.getUtenteAndRole(model);
 			return "fotografo";
 		}
 		else {
