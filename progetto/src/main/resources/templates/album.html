@@ -59,29 +59,12 @@
 							th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
 					</div>
 					<div class="pl-5">
-						<button class="btn btn-primary"
-							onclick="document.getElementById('id02').style.display='block'">
-							Visualizza</button>
-					<div id="id02" class="foto modal">
-						<!-- in realtà questo th:action dovrebbe inserire nel carrello -->
-						<form class="contenuto modal-content animate" method="get"
-							th:action="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/foto/' + ${foto.id} + '/aggiungiFoto'}">
-							<div class="fotocontainer mb-4">
-								<span
-									onclick="document.getElementById('id02').style.display='none'"
-									
-									class="close" title="Chiudi">&times;</span>
-									<img class="fotografia"
-									th:src="'/images/'+ ${path} + '/' + ${foto.nome}">
-							</div>
-							<button class="btn btn-primary mr-auto ml-auto mb-5"
-								type="submit" th:if="${role} != 'ADMIN'">Aggiungi al carrello</button>
-						</form>
-						</div>
-					</div>
+						<a th:href="@{'/fotografo/' + ${fotografo.id} + '/album/' + ${album.id} + '/foto/' + ${foto.id} + '/aggiungiFoto'}"
+					class="btn btn-primary my-2">Visualizza</a>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	</main>
 
@@ -98,17 +81,8 @@
 			}
 		}
 	</script>
-	<script>
-		// Get the modal
-		var modal = document.getElementById('id02');
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-	</script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
 </html>
